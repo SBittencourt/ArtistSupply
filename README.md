@@ -71,6 +71,25 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 
 ## Backlog total
 
+| **ID** | **User Story**                         | **Descrição**                                                                                                                                   | **Prioridade** | **Sprint**                        |
+|--------|----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|----------------|----------------------------------|
+| 1      | Protótipo Navegável                    | Como um usuário, quero visualizar um protótipo navegável do aplicativo para entender sua funcionalidade e fluxo.                                | Alta | 1 |
+| 2      | Cadastro de Usuário                    | Como um usuário, quero me cadastrar usando meu e-mail, número de telefone ou conta de rede social para ter acesso ao app.                        | Alta | 2 |
+| 3      | Login de Usuário                       | Como um usuário, quero poder fazer login no aplicativo usando e-mail, número de telefone ou redes sociais.                                       | Alta | 2 |
+| 4      | Recuperação de Senha                   | Como um usuário, quero poder recuperar minha senha em caso de esquecimento, para continuar acessando o app.                                      | Alta | 2 |
+| 5      | CRUD de Itens do Estoque               | Como um usuário, quero poder adicionar, editar, remover e visualizar itens no estoque, incluindo nome, descrição, categoria, quantidade, preço e localização. | Alta | 2|
+| 6      | Pesquisa de Itens                      | Como um usuário, quero poder pesquisar itens por nome, categoria ou localização, para encontrar rapidamente o que preciso.                      | Média | 2 |
+| 7      | Autenticação Segura                    | Como um usuário, quero garantir que meu cadastro e login sejam realizados com autenticação segura, para proteger meus dados.                     | Alta | 2 |
+| 8      | Gestão de Categorias                   | Como um usuário, quero poder criar e gerenciar categorias de itens para organizar melhor o estoque.                                              | Média | 3 |
+| 9      | Gestão de Localizações                 | Como um usuário, quero poder criar e gerenciar localizações dentro do espaço de armazenamento para manter o estoque organizado.                  | Média | 3 |
+| 10     | Acesso Multiplataforma                 | Como um usuário, quero poder acessar o app em diferentes plataformas (web e móvel) e sincronizar dados em tempo real.                            | Alta | 3 |
+| 11     | Controle de Estoque                    | Como um usuário, quero acompanhar a quantidade de itens no estoque, incluindo alertas de baixo estoque.                                          | Média | 4 |
+| 12     | Registro de Entradas e Saídas          | Como um usuário, quero poder registrar entradas e saídas de itens do estoque, com datas e motivos, para manter um histórico preciso.             | Média | 4 |
+| 13     | Integração com Fornecedores            | Como um usuário, quero registrar e gerenciar informações de fornecedores, para facilitar reabastecimentos.                                       | Baixa | 4 |
+| 14     | Notificações de Baixo Estoque          | Como um usuário, quero receber notificações quando um item atingir o nível mínimo de estoque, para tomar as ações necessárias.                   | Baixa | 5 |
+| 15     | Geração de Relatórios                  | Como um usuário, quero poder gerar relatórios detalhados do estoque, incluindo histórico de movimentações e análise de itens.                    | Baixa | 5 |
+
+
 
 → [Voltar ao topo](#topo)
 
