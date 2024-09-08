@@ -37,9 +37,21 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 <span id='links'>
 
 ## :clipboard: Links
+
+<img src="doc/Artist Supply.png" width="750px">
+
+- [Identidade visual do sistema](https://www.canva.com/design/DAGQLaw8SRk/uztkB7j3hwgoJaWhsLE-Kg/edit?utm_content=DAGQLaw8SRk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+<hr>
+
 <img src="doc/ArtistSupply - mobile.png" width="750px">
+
 - [Protótipo navegável - mobile](https://www.figma.com/design/SnbxUN4eQ1Qf2s82KWmrE4/ArtistSupply---mobile?node-id=0-1&t=HauDy0Fvdf7AxRMJ-1)
+
+<hr>
+
 <img src="doc/ArtistSupply - desktop.png" width="750px">
+
 - [Protótipo navegável - desktop](https://www.figma.com/design/CTlYHK57PkvQcyFOIbMfoP/ArtistSupply---desktop?node-id=0-1&t=HauDy0Fvdf7AxRMJ-1)
 
 <hr>
