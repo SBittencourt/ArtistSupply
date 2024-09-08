@@ -81,10 +81,10 @@ Foram usadas as seguintes ferramentas, linguagens e tecnologias para a execuçã
 - [Figma](https://www.figma.com): Prototipagem
 - [Git](https://git-scm.com): Versionamento
 - [GitHub](https://github.com/): Armazenamento de código e documentação
-- [Laravel](https://www.w3schools.com/js/default.asp): Linguagem de programação do frontend e do back
-- [React native](https://java.com): Linguagem de programação do front(mobile)
-- [Notion](https://www.atlassian.com/software/jira): Organização de tarefas
-- [MySQL](https://www.postgresql.org/): Banco de dados
+- [Laravel](https://laravel.com): Linguagem de programação do frontend e do back
+- [React native](https://reactnative.dev): Linguagem de programação do front(mobile)
+- [Notion](https://www.notion.so/): Organização de tarefas
+- [MySQL](https://www.mysql.com): Banco de dados
 
 → [Voltar ao topo](#topo)  
 <span id="instrucoes">
