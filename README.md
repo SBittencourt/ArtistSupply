@@ -27,9 +27,9 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 | Tarefa |            Status           |
 |:------:|:---------------------------:|
 | Protótipo navegável - mobile | Finalizada |
-| Protótipo navegável - desktop | Em andamento |
+| Protótipo navegável - desktop | Finalizada |
 | Backlog | Finalizada |
-| Modelagem do banco de dados | Em andamento |
+| Modelagem do banco de dados | Finalizada |
 | Criação de identidade visual | Finalizada |
 
 → [Voltar ao topo](#topo)
