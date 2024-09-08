@@ -38,8 +38,11 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 
 ## :clipboard: Links
 <img src="doc/ArtistSupply - mobile.png" width="750px">
+
 - [Protótipo navegável - mobile](https://www.figma.com/design/SnbxUN4eQ1Qf2s82KWmrE4/ArtistSupply---mobile?node-id=0-1&t=HauDy0Fvdf7AxRMJ-1)
+  
 <img src="doc/ArtistSupply - desktop.png" width="750px">
+
 - [Protótipo navegável - desktop](https://www.figma.com/design/CTlYHK57PkvQcyFOIbMfoP/ArtistSupply---desktop?node-id=0-1&t=HauDy0Fvdf7AxRMJ-1)
 
 <hr>
