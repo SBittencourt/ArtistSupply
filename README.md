@@ -69,6 +69,8 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 :pushpin: Aplicar a aprendizagem baseada em problemas
 :pushpin: Ter um uso fácil e ágil para facilitar a utilização em situações de multi-tarefa
 
+→ [Voltar ao topo](#topo)
+
 ## Backlog total
 
 | **ID** | **User Story**                         | **Descrição**                                                                                                                                   | **Prioridade** | **Sprint**                        |
@@ -104,9 +106,6 @@ Foram usadas as seguintes ferramentas, linguagens e tecnologias para a execuçã
 - [React native](https://reactnative.dev): Linguagem de programação do front(mobile)
 - [Notion](https://www.notion.so/): Organização de tarefas
 - [MySQL](https://www.mysql.com): Banco de dados
-
-→ [Voltar ao topo](#topo)  
-<span id="instrucoes">
 
 
 → [Voltar ao topo](#topo)
