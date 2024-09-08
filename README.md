@@ -26,15 +26,15 @@ Programação para dispositivos móveis
 
 <span id='relatorios'>
 
-## :pushpin: Relatórios pro sprint
+## :pushpin: Relatórios por sprint
 Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando em "Ver entrega". 
 | Sprint |  Entrega   |            Status           | Relatório |
 |:------:|:----------:|:---------------------------:|:---------:|
-| 01     | 09/09/2024 | Finalizada | [Clique aqui]( https://github.com/SBittencourt/ArtistSupply/tree/sprint-1 ) |
-| 02     | 04/10/2024 | :construction: Em Andamento | [Clique aqui]( https://github.com/SBittencourt/ArtistSupply/tree/sprint-2 ) |
-| 03     | 25/10/2024 | Não iniciada | [Clique aqui]( https://github.com/SBittencourt/ArtistSupply/tree/sprint-3 ) |
-| 04     | 18/11/2024 | Não iniciada | [Clique aqui]( https://github.com/SBittencourt/ArtistSupply/tree/sprint-4 ) |
-| 05     | 06/12/2024 | Não iniciada | [Clique aqui]( https://github.com/SBittencourt/ArtistSupply/tree/sprint-5 ) |
+| 01     | 09/09/2024 | Finalizada | [Ver entrega]( https://github.com/SBittencourt/ArtistSupply/tree/sprint-1 ) |
+| 02     | 04/10/2024 | :construction: Em Andamento | [Ver entrega]( https://github.com/SBittencourt/ArtistSupply/tree/sprint-2 ) |
+| 03     | 25/10/2024 | Não iniciada | [Ver entrega]( https://github.com/SBittencourt/ArtistSupply/tree/sprint-3 ) |
+| 04     | 18/11/2024 | Não iniciada | [Ver entrega]( https://github.com/SBittencourt/ArtistSupply/tree/sprint-4 ) |
+| 05     | 06/12/2024 | Não iniciada | [Ver entrega]( https://github.com/SBittencourt/ArtistSupply/tree/sprint-5 ) |
 
 → [Voltar ao topo](#topo)
 
@@ -102,8 +102,9 @@ Foram usadas as seguintes ferramentas, linguagens e tecnologias para a execuçã
 - [Figma](https://www.figma.com): Prototipagem
 - [Git](https://git-scm.com): Versionamento
 - [GitHub](https://github.com/): Armazenamento de código e documentação
-- [Laravel](https://laravel.com): Linguagem de programação do frontend e do back
-- [React native](https://reactnative.dev): Linguagem de programação do front(mobile)
+- [PHP](https://www.php.net): Linguagem de programação do front e do back
+- [Laravel](https://laravel.com): Framework do frontend e do back(desktop)
+- [React native](https://reactnative.dev): Framework de programação do front(mobile)
 - [Notion](https://www.notion.so/): Organização de tarefas
 - [MySQL](https://www.mysql.com): Banco de dados
 
