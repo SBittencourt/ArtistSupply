@@ -1,0 +1,11 @@
+.main-sidebar {
+    background-color: #FE676E; /* Rosa-Coral */
+}
+
+.main-sidebar .nav-link {
+    color: #ffffff; /* Texto branco */
+}
+
+.main-sidebar .nav-link:hover {
+    background-color: #ffffff; /* Efeito de hover */
+}
