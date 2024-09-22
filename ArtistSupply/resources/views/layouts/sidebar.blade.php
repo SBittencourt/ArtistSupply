@@ -9,7 +9,6 @@
                 
                 <li class="nav-item user-panel">
                     <a href="#" class="nav-link">
-                        <img src="path/to/user-image.png" class="img-circle elevation-2" alt="User Image">
                         <p>Nome do Usuário</p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -30,19 +29,45 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="icon-dashboard nav-icon"></i>
-                        <p>Dashboard</p>
+                        <p>Página inicial</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="icon-building nav-icon"></i>
-                        <p>Empresas</p>
+                        <p>Eventos</p>
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="icon-building nav-icon"></i>
+                        <p>Relatórios</p>
+                    </a>
+                </li>
 
-                <li class="nav-header">Títulos</li>
+                <li class="nav-item user-panel">
+                    <a href="#" class="nav-link">
+                        <p>Estoque</p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="icon-user-edit nav-icon"></i>
+                                <p>Cadastrar produto</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="icon-user-edit nav-icon"></i>
+                                <p>Fornecedores</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- <li class="nav-header">Títulos</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="icon-briefcase nav-icon"></i>
@@ -54,7 +79,7 @@
                     <div class="nav-link">
                         <button type="button" onclick="openNewBoard()" class="btn btn-light btn-xs">Adicionar Novo Quadro</button>
                     </div>
-                </li>
+                </li> --}}
 
             </ul>
         </nav>
