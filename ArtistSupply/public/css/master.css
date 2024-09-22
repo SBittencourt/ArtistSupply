@@ -3,7 +3,7 @@ body {
 }
 
 .main-sidebar {
-    background-color: #FE676E;
+    background: linear-gradient(180deg, #240844, #120d61);
 }
 
 .main-sidebar .nav-link {
@@ -31,4 +31,36 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%; 
+}
+
+body {
+    background-color: #121212; /* Fundo escuro */
+    color: #ffffff; /* Texto claro */
+}
+
+.navbar {
+    background: #170e24;;
+}
+
+.content-wrapper {
+    background-color: #211336; /* Cor do conteúdo */
+}
+
+/* Ajustar o botão de login */
+.btn-primary {
+    background-color: #6200ea; /* Cor do botão */
+    border-color: #6200ea;
+}
+
+.btn-primary:hover {
+    background-color: #3700b3; /* Cor ao passar o mouse */
+}
+
+/* Links */
+a {
+    color: #bb86fc; /* Cor dos links */
+}
+
+a:hover {
+    color: #3700b3; /* Cor dos links ao passar o mouse */
 }

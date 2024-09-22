@@ -66,22 +66,6 @@
             50% { opacity: 1; }
         }
 
-        @keyframes move {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(calc(100px * var(--random-x)), calc(100px * var(--random-y))); }
-        }
-
-        .star:nth-child(1) { --random-x: 1; --random-y: 0.5; top: 5%; left: 10%; animation-delay: 0s; animation: twinkle 2s infinite, move 4s infinite; }
-        .star:nth-child(2) { --random-x: -0.5; --random-y: 1; top: 10%; left: 80%; animation-delay: 0.5s; animation: twinkle 2s infinite, move 4s infinite; }
-        .star:nth-child(3) { --random-x: 0.5; --random-y: -0.5; top: 15%; left: 30%; animation-delay: 1s; animation: twinkle 2s infinite, move 4s infinite; }
-        .star:nth-child(4) { --random-x: -1; --random-y: 0.5; top: 25%; left: 20%; animation-delay: 1.2s; animation: twinkle 2s infinite, move 4s infinite; }
-        .star:nth-child(5) { --random-x: 0.3; --random-y: 1; top: 35%; left: 70%; animation-delay: 0.8s; animation: twinkle 2s infinite, move 4s infinite; }
-        .star:nth-child(6) { --random-x: -0.7; --random-y: -0.5; top: 45%; left: 15%; animation-delay: 1.4s; animation: twinkle 2s infinite, move 4s infinite; }
-        .star:nth-child(7) { --random-x: 0.2; --random-y: 0.8; top: 55%; left: 65%; animation-delay: 0.6s; animation: twinkle 2s infinite, move 4s infinite; }
-        .star:nth-child(8) { --random-x: 0.1; --random-y: -1; top: 65%; left: 5%; animation-delay: 0.9s; animation: twinkle 2s infinite, move 4s infinite; }
-        .star:nth-child(9) { --random-x: -0.4; --random-y: 0.3; top: 75%; left: 90%; animation-delay: 1.1s; animation: twinkle 2s infinite, move 4s infinite; }
-        .star:nth-child(10) { --random-x: -0.2; --random-y: 0.6; top: 85%; left: 50%; animation-delay: 1.3s; animation: twinkle 2s infinite, move 4s infinite; }
-
         .btn-primary {
             background: #6c26bb;
             border: none; 
@@ -95,8 +79,9 @@
             border: none;
             color: white;
             padding: 0.5rem 1rem;
-            margin: 0 0.25rem; /* Espaço reduzido entre os botões */
+            margin: 0 0.25rem;
             transition: background 0.3s;
+            flex: 1; /* Isso garante que os botões ocupem espaço igual */
         }
 
         .btn-social:hover {
@@ -105,7 +90,8 @@
 
         .social-buttons {
             display: flex;
-            justify-content: center; /* Centraliza os botões */
+            justify-content: space-between; /* Usa espaço entre os botões */
+            margin-bottom: 1rem; /* Adiciona um pouco de espaço abaixo dos botões */
         }
 
         .text-link {
@@ -138,7 +124,7 @@
             <button type="submit" class="btn btn-primary w-100">Entrar</button>
         </div>
         
-        <div class="social-buttons mb-3">
+        <div class="social-buttons">
             <button type="button" class="btn btn-social"><i class="fab fa-google"></i> Google</button>
             <button type="button" class="btn btn-social"><i class="fab fa-facebook-f"></i> Facebook</button>
         </div>
@@ -151,18 +137,38 @@
 </div>
 
 <!-- Estrelas de fundo -->
-<div class="star"></div>
-<div class="star"></div>
-<div class="star"></div>
-<div class="star"></div>
-<div class="star"></div>
-<div class="star"></div>
-<div class="star"></div>
-<div class="star"></div>
-<div class="star"></div>
-<div class="star"></div>
+<div class="star" style="top: 5%; left: 10%; animation-delay: 0s;"></div>
+<div class="star" style="top: 10%; left: 80%; animation-delay: 0.5s;"></div>
+<div class="star" style="top: 15%; left: 30%; animation-delay: 1s;"></div>
+<div class="star" style="top: 25%; left: 20%; animation-delay: 1.2s;"></div>
+<div class="star" style="top: 35%; left: 70%; animation-delay: 0.8s;"></div>
+<div class="star" style="top: 45%; left: 15%; animation-delay: 1.4s;"></div>
+<div class="star" style="top: 55%; left: 65%; animation-delay: 0.6s;"></div>
+<div class="star" style="top: 65%; left: 5%; animation-delay: 0.9s;"></div>
+<div class="star" style="top: 75%; left: 90%; animation-delay: 1.1s;"></div>
+<div class="star" style="top: 85%; left: 50%; animation-delay: 1.3s;"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        @if(session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: '{{ session('error') }}',
+                background: '#121120',
+                color: 'white',
+                confirmButtonColor: '#6c26bb',
+                position: 'top', // Posiciona o alert no topo
+                toast: true, // Faz o alert aparecer como um toast
+                showConfirmButton: false,
+                timer: 3000, // Dura 3 segundos
+            });
+        @endif
+    });
+</script>
 </body>
 </html>

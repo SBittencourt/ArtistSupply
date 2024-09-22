@@ -20,15 +20,14 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
+    
         if (Auth::attempt($request->only('email', 'password'))) {
             return redirect()->intended('home');
         }
-
-        return back()->withErrors([
-            'email' => 'As credenciais informadas estão incorretas.',
-        ]);
+    
+        return redirect()->route('login')->with('error', 'As credenciais informadas estão incorretas.');
     }
+    
 
     public function logout(Request $request)
     {
