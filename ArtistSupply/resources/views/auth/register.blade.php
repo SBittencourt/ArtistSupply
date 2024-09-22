@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Criar Conta</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400&family=Berkshire+Swash&display=swap" rel="stylesheet">
     <style>
@@ -29,7 +29,7 @@
             color: white;
         }
 
-        .login-container {
+        .register-container {
             width: 80%;
             max-width: 600px;
             padding: 3rem;
@@ -74,26 +74,6 @@
             background: #9d48ec;
         }
 
-        .btn-social {
-            background: #3b3e6d;
-            border: none;
-            color: white;
-            padding: 0.5rem 1rem;
-            margin: 0 0.25rem;
-            transition: background 0.3s;
-            flex: 1; 
-        }
-
-        .btn-social:hover {
-            background: #7016d6;
-        }
-
-        .social-buttons {
-            display: flex;
-            justify-content: space-between; 
-            margin-bottom: 1rem; 
-        }
-
         .text-link {
             color: white;
             transition: color 0.3s;
@@ -108,30 +88,32 @@
 
 <div class="title">Artist Supply</div>
 
-<div class="login-container">
-    <h2 class="text-center">Login</h2>
-    <form action="{{ route('login') }}" method="POST">
+<div class="register-container">
+    <h2 class="text-center">Criar Conta</h2>
+    <form action="{{ route('register') }}" method="POST">
         @csrf
+        <div class="mb-3">
+            <label for="name" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Telefone</label>
+            <input type="tel" class="form-control" id="phone" name="phone" required>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Senha</label>
             <input type="password" class="form-control" id="password" name="password" required>
         </div>
         <div class="mb-3">
-            <button type="submit" class="btn btn-primary w-100">Entrar</button>
+            <button type="submit" class="btn btn-primary w-100">Criar Conta</button>
         </div>
-        
-        {{-- <div class="social-buttons">
-            <button type="button" class="btn btn-social"><i class="fab fa-google"></i> Google</button>
-            <button type="button" class="btn btn-social"><i class="fab fa-facebook-f"></i> Facebook</button>
-        </div> --}}
 
         <div class="text-center">
-            {{-- <a href="{{ route('password.request') }}" class="text-link">Esqueceu sua senha?</a><br> --}}
-            <a href="{{ route('register') }}" class="text-link">Não possui uma conta? Criar uma conta</a>
+            <a href="{{ route('login') }}" class="text-link">Já possui uma conta? Fazer login</a>
         </div>
     </form>
 </div>
@@ -162,13 +144,29 @@
                 background: '#121120',
                 color: 'white',
                 confirmButtonColor: '#6c26bb',
-                position: 'top', 
-                toast: true, 
+                position: 'top',
+                toast: true,
                 showConfirmButton: false,
-                timer: 3000, 
+                timer: 3000,
+            });
+        @endif
+
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Sucesso',
+                text: '{{ session('success') }}',
+                background: '#121120',
+                color: 'white',
+                confirmButtonColor: '#6c26bb',
+                position: 'top',
+                toast: true,
+                showConfirmButton: false,
+                timer: 3000,
             });
         @endif
     });
 </script>
+
 </body>
 </html>
