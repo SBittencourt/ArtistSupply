@@ -13,7 +13,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/perfil" class="nav-link">
                                 <i class="icon-user-edit nav-icon"></i>
                                 <p>Perfil</p>
                             </a>
@@ -28,39 +28,45 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/home" class="nav-link">
                         <i class="icon-dashboard nav-icon"></i>
                         <p>Página inicial</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/eventos" class="nav-link">
                         <i class="icon-building nav-icon"></i>
                         <p>Eventos</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/relatorios" class="nav-link">
                         <i class="icon-building nav-icon"></i>
                         <p>Relatórios</p>
                     </a>
                 </li>
 
                 <li class="nav-item user-panel">
-                    <a href="#" class="nav-link">
+                    <a href="estoque" class="nav-link">
                         <p>Estoque</p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/estoque" class="nav-link">
+                                <i class="icon-user-edit nav-icon"></i>
+                                <p>Gerenciar estoque</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/estoque/produtos" class="nav-link">
                                 <i class="icon-user-edit nav-icon"></i>
                                 <p>Cadastrar produto</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/estoque/fornecedores" class="nav-link">
                                 <i class="icon-user-edit nav-icon"></i>
                                 <p>Fornecedores</p>
                             </a>

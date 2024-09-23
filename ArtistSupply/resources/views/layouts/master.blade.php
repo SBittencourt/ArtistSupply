@@ -48,7 +48,8 @@
         <link rel="stylesheet" href="https://your-cdn.com/path/to/hint.css">
 
         <link rel="stylesheet" href="/css/master.css"> 
-
+        
+        @yield('styles')
 
         @livewireStyles
     </head>

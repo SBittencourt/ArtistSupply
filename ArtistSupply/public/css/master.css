@@ -1,28 +1,28 @@
 body {
-    background-color: #FFEECC; 
+    background-color: #121212; /* Fundo escuro */
+    color: #ffffff; /* Texto claro */
 }
 
 .main-sidebar {
-    background: linear-gradient(180deg, #240844, #120d61);
+    background: linear-gradient(180deg, #3e1f78, #1d0a3a); /* Gradiente roxo mais escuro */
 }
 
 .main-sidebar .nav-link {
-    color: #ffffff; 
+    color: #ffffff; /* Texto das links mais claro */
 }
 
 .main-sidebar .nav-link:hover {
-    background-color: #ffffff; 
+    background-color: #4a2c88; /* Cor ao passar o mouse */
 }
 
 .brand-text {
     font-family: 'Comfortaa', cursive;
-    color: #ffffff;
+    color: #ffffff; /* Texto da marca mais claro */
 }
-
 
 .nav-link p {
     font-family: 'Comfortaa', cursive;
-    color: #ffffff; 
+    color: #ffffff; /* Texto das links mais claro */
 }
 
 .brand-link {
@@ -33,27 +33,32 @@ body {
     width: 100%; 
 }
 
-body {
-    background-color: #121212; /* Fundo escuro */
-    color: #ffffff; /* Texto claro */
-}
-
 .navbar {
-    background: #170e24;;
+    background: #3e1f78; /* Navbar roxa escura */
 }
 
 .content-wrapper {
-    background-color: #211336; /* Cor do conteúdo */
+    background-color: #1f0c45; /* Cor do conteúdo mais escura */
 }
 
 /* Ajustar o botão de login */
 .btn-primary {
-    background-color: #6200ea; /* Cor do botão */
-    border-color: #6200ea;
+    background-color: #5e35b1; /* Cor do botão roxa escura */
+    border-color: #5e35b1;
+}
+
+.btn-danger {
+    background-color: #5e35b1; /* Cor do botão roxa escura */
+    border-color: #5e35b1;
+}
+
+.btn-danger:hover {
+    background-color: #3700b3; /* Cor ao passar o mouse */
+    border-color: #3700b3;
 }
 
 .btn-primary:hover {
-    background-color: #3700b3; /* Cor ao passar o mouse */
+    background-color: #3b2a4b; /* Cor ao passar o mouse */
 }
 
 /* Links */
@@ -62,5 +67,9 @@ a {
 }
 
 a:hover {
-    color: #3700b3; /* Cor dos links ao passar o mouse */
+    color: #9a00ff; /* Cor dos links ao passar o mouse */
+}
+
+.icon-white {
+    color: #ffffff; /* Define a cor dos ícones como branco */
 }
