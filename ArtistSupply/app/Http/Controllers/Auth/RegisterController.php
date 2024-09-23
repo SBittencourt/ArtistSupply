@@ -17,27 +17,36 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'phone' => 'required|string|max:20',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-
-        if ($validator->fails()) {
+        // Certifique-se de que todos os campos foram preenchidos
+        if (!$request->name || !$request->email || !$request->phone || !$request->password) {
             return redirect()->back()
-                ->withErrors($validator)
-                ->withInput()
-                ->with('error', 'Por favor, corrija os erros abaixo.');
+                ->with('error', 'Todos os campos são obrigatórios.')
+                ->withInput();
         }
-
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'password' => Hash::make($request->password),
-        ]);
-
+    
+        // Verificar se o email já está em uso
+        if (User::where('email', $request->email)->exists()) {
+            return redirect()->back()
+                ->with('error', 'O email já está em uso.')
+                ->withInput();
+        }
+    
+        // Criar o usuário com a senha hasheada
+        try {
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'password' => bcrypt($request->password),
+            ]);
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Ocorreu um erro ao cadastrar: ' . $e->getMessage())
+                ->withInput();
+        }
+    
         return redirect()->route('login')->with('success', 'Conta criada com sucesso! Faça login.');
     }
+    
+    
 }

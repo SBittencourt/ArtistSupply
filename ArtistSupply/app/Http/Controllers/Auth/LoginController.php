@@ -22,10 +22,10 @@ class LoginController extends Controller
         ]);
     
         if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect()->intended('home');
+            return redirect()->intended('/');
         }
     
-        return redirect()->route('login')->with('error', 'As credenciais informadas estão incorretas.');
+        return redirect()->route('/')->with('error', 'As credenciais informadas estão incorretas.');
     }
     
 

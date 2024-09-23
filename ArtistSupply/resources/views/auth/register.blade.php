@@ -86,7 +86,7 @@
 </head>
 <body>
 
-<div class="title">Artist Supply</div>
+<!-- <div class="title">Artist Supply</div> -->
 
 <div class="register-container">
     <h2 class="text-center">Criar Conta</h2>

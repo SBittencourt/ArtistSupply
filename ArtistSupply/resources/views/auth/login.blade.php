@@ -12,6 +12,7 @@
             color: white;
             height: 100vh;
             display: flex;
+            flex-direction: column; /* Alinhamento vertical */
             justify-content: center;
             align-items: center;
             overflow: hidden;
@@ -20,13 +21,10 @@
         }
 
         .title {
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
             font-size: 4rem;
             font-family: 'Berkshire Swash', cursive;
             color: white;
+            margin-bottom: 20px; /* Espaçamento abaixo do título */
         }
 
         .login-container {
@@ -38,6 +36,17 @@
             box-shadow: 0 4px 20px rgba(176, 162, 255, 0.5);
             position: relative;
             z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem; /* Tamanho ajustado para telas menores */
+                margin-bottom: 15px; /* Ajuste de margem */
+            }
+
+            .login-container {
+                padding: 2rem; /* Menos padding em telas pequenas */
+            }
         }
 
         .star {
@@ -74,26 +83,6 @@
             background: #9d48ec;
         }
 
-        .btn-social {
-            background: #3b3e6d;
-            border: none;
-            color: white;
-            padding: 0.5rem 1rem;
-            margin: 0 0.25rem;
-            transition: background 0.3s;
-            flex: 1; 
-        }
-
-        .btn-social:hover {
-            background: #7016d6;
-        }
-
-        .social-buttons {
-            display: flex;
-            justify-content: space-between; 
-            margin-bottom: 1rem; 
-        }
-
         .text-link {
             color: white;
             transition: color 0.3s;
@@ -124,13 +113,7 @@
             <button type="submit" class="btn btn-primary w-100">Entrar</button>
         </div>
         
-        {{-- <div class="social-buttons">
-            <button type="button" class="btn btn-social"><i class="fab fa-google"></i> Google</button>
-            <button type="button" class="btn btn-social"><i class="fab fa-facebook-f"></i> Facebook</button>
-        </div> --}}
-
         <div class="text-center">
-            {{-- <a href="{{ route('password.request') }}" class="text-link">Esqueceu sua senha?</a><br> --}}
             <a href="{{ route('register') }}" class="text-link">Não possui uma conta? Criar uma conta</a>
         </div>
     </form>
