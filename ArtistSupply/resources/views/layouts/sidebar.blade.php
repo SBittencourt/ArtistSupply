@@ -9,7 +9,7 @@
                 
                 <li class="nav-item user-panel">
                     <a href="#" class="nav-link">
-                        <p>Nome do Usuário</p>
+                        <p>{{ $user->name }}</p> <!-- Nome do usuário -->
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
@@ -19,9 +19,10 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link">
-                                <button type="button" class="btn btn-danger btn-block btn-sm">Sair</button>
-                            </a>
+                            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-block btn-sm">Sair</button>
+                            </form>
                         </li>
                     </ul>
                 </li>
@@ -67,24 +68,11 @@
                     </ul>
                 </li>
 
-                {{-- <li class="nav-header">Títulos</li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="icon-briefcase nav-icon"></i>
-                        <p>Cargos</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <div class="nav-link">
-                        <button type="button" onclick="openNewBoard()" class="btn btn-light btn-xs">Adicionar Novo Quadro</button>
-                    </div>
-                </li> --}}
-
             </ul>
         </nav>
     </div>
 </aside>
+
 
 <div class="modal fade" id="newBoard">
     <div class="modal-dialog">

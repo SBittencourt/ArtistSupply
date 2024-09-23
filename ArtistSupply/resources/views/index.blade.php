@@ -101,7 +101,7 @@
 
 <div class="welcome-container">
     <h2>Bem-vindo!</h2>
-    <p>Somos uma plataforma para controle de estoque para artist's alley! Organize seu estoque, eventos e mais!</p>
+    <p>Somos uma plataforma para organização e preparação para artist's alley! Organize seu estoque, eventos e mais!</p>
     <p>Faça login para acessar sua conta ou crie uma nova conta para começar.</p>
     <div class="mt-4">
         <a href="{{ route('login') }}" class="btn btn-primary">Entrar</a>

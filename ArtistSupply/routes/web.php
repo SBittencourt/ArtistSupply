@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\UserController;
 
 //rota inicial
 Route::get('/', function () {
@@ -27,9 +28,7 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 //Rotas autenticadas
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', function () {
-        return view('home');
-    });
+    Route::get('home', [UserController::class, 'home'])->name('home');
 
     // Adicione outras rotas protegidas aqui
 });
