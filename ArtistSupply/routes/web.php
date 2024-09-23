@@ -35,21 +35,29 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Usuário
     Route::prefix('usuario')->group(function () {
-        Route::get('/', [])->name('events.index');
-
+        Route::get('/', [])->name('usuario.index');
+        Route::get('/atualizar', [])->name('usuario.atualizar');
+        Route::post('/store', [])->name('usuario.armazenar');
+        Route::delete('/destroy', [])->name('usuario.excluir');
         });
 
 
     // Estoque
     Route::prefix('estoque')->group(function () {
-        Route::get('/', [])->name('events.index');
-
+        Route::get('/', [])->name('produto.index');
+        Route::get('/criar', [])->name('produto.criar');
+        Route::get('/atualizar', [])->name('produto.atualizar');
+        Route::post('/store', [])->name('produto.armazenar');
+        Route::delete('/destroy', [])->name('produto.excluir');
         });
 
     // Eventos
     Route::prefix('events')->group(function () {
-        Route::get('/', [])->name('events.index');
-
+        Route::get('/', [])->name('evento.index');
+        Route::get('/criar', [])->name('evento.criar');
+        Route::get('/atualizar', [])->name('evento.atualizar');
+        Route::post('/store', [])->name('evento.armazenar');
+        Route::delete('/destroy', [])->name('evento.excluir');
         });
     
     // Relatórios
