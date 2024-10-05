@@ -1,5 +1,5 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="#" class="brand-link">
+    <a href="{{ route('home') }}" class="brand-link">
         <span class="brand-text font-weight-light">Artist Supply</span>
     </a>
 
@@ -8,12 +8,12 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 
                 <li class="nav-item user-panel">
-                    <a href="#" class="nav-link">
-                        <p>{{ $user->name }}</p> <!-- Nome do usuário -->
-                    </a>
+                    <a href="{{ route('usuario.atualizar') }}" class="nav-link">
+                        <p>{{ $authUser->name }}</p>
+                    </a>                    
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/perfil" class="nav-link">
+                            <a href="{{ route('usuario.atualizar') }}" class="nav-link">
                                 <i class="icon-user-edit nav-icon"></i>
                                 <p>Perfil</p>
                             </a>

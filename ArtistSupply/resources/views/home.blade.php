@@ -9,14 +9,14 @@
             <br>
             <div class="col-md-12">
                 <div class="d-flex justify-content-between">
-                    <a href="{{ url('/pagina1') }}" class="btn btn-purple-box">
-                        <i class="fas fa-home"></i> Página 1
+                    <a href="{{ url('/eventos') }}" class="btn btn-purple-box">
+                        <i class="fas fa-home"></i> Eventos
                     </a>
-                    <a href="{{ url('/pagina2') }}" class="btn btn-purple-box">
-                        <i class="fas fa-user"></i> Página 2
+                    <a href="{{ url('/relatorios') }}" class="btn btn-purple-box">
+                        <i class="fas fa-user"></i> Relatórios
                     </a>
-                    <a href="{{ url('/pagina3') }}" class="btn btn-purple-box">
-                        <i class="fas fa-cog"></i> Página 3
+                    <a href="{{ url('/estoque') }}" class="btn btn-purple-box">
+                        <i class="fas fa-cog"></i> Estoque
                     </a>
                     <a href="{{ url('/pagina4') }}" class="btn btn-purple-box">
                         <i class="fas fa-sign-out-alt"></i> Página 4
@@ -30,39 +30,39 @@
 @section('styles')
     <style>
         .btn-purple-box {
-            background-color: #6f42c1; /* Tom de roxo 1 */
+            background-color: #6f42c1; 
             color: white;
             border: none;
-            width: 23%; /* Ajuste a largura conforme necessário */
-            height: 100px; /* Altura dos botões */
+            width: 23%; 
+            height: 100px; 
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            border-radius: 8px; /* Bordas levemente arredondadas */
-            text-decoration: none; /* Remove underline */
+            border-radius: 8px; 
+            text-decoration: none; 
         }
 
         .btn-purple-box:nth-child(2) {
-            background-color: #5a30a1; /* Tom de roxo 2 */
+            background-color: #5a30a1; 
         }
 
         .btn-purple-box:nth-child(3) {
-            background-color: #4e1f8e; /* Tom de roxo 3 */
+            background-color: #4e1f8e; 
         }
 
         .btn-purple-box:nth-child(4) {
-            background-color: #421a7a; /* Tom de roxo 4 */
+            background-color: #421a7a; 
         }
 
         .btn-purple-box:hover {
-            filter: brightness(90%); /* Efeito ao passar o mouse */
+            filter: brightness(90%); 
         }
 
         @media (max-width: 768px) {
             .btn-purple-box {
-                width: 100%; /* Botões ocupam a largura total em telas menores */
-                margin-bottom: 10px; /* Espaçamento entre botões */
+                width: 100%; 
+                margin-bottom: 10px; 
             }
         }
     </style>

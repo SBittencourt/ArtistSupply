@@ -47,7 +47,7 @@
         <!-- Hint CSS -->
         <link rel="stylesheet" href="https://your-cdn.com/path/to/hint.css">
 
-        <link rel="stylesheet" href="/css/master.css"> 
+        <link rel="stylesheet" href="/css/master.css">
         
         @yield('styles')
 
@@ -64,6 +64,7 @@
 
             <div class="content-wrapper">
                 <section class="content">
+                    @include('layouts.message')
                     @yield('content')
                 </section>
             </div>        

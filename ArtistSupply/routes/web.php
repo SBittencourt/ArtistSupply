@@ -35,35 +35,33 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Usuário
     Route::prefix('usuario')->group(function () {
-        Route::get('/', [])->name('usuario.index');
-        Route::get('/atualizar', [])->name('usuario.atualizar');
-        Route::post('/store', [])->name('usuario.armazenar');
-        Route::delete('/destroy', [])->name('usuario.excluir');
-        });
-
+        Route::get('/', [UserController::class, 'edit'])->name('usuario.atualizar');
+        Route::post('/store', [UserController::class, 'store'])->name('usuario.store');
+        Route::delete('/destroy', [UserController::class, 'destroy'])->name('usuario.excluir');
+    });
 
     // Estoque
     Route::prefix('estoque')->group(function () {
-        Route::get('/', [])->name('produto.index');
-        Route::get('/criar', [])->name('produto.criar');
-        Route::get('/atualizar', [])->name('produto.atualizar');
-        Route::post('/store', [])->name('produto.armazenar');
-        Route::delete('/destroy', [])->name('produto.excluir');
-        });
+        Route::get('/', [EstoqueController::class, 'index'])->name('produto.index');
+        Route::get('/criar', [EstoqueController::class, 'create'])->name('produto.criar');
+        Route::get('/atualizar', [EstoqueController::class, 'edit'])->name('produto.atualizar');
+        Route::post('/store', [EstoqueController::class, 'store'])->name('produto.armazenar');
+        Route::delete('/destroy', [EstoqueController::class, 'destroy'])->name('produto.excluir');
+    });
 
     // Eventos
     Route::prefix('events')->group(function () {
-        Route::get('/', [])->name('evento.index');
-        Route::get('/criar', [])->name('evento.criar');
-        Route::get('/atualizar', [])->name('evento.atualizar');
-        Route::post('/store', [])->name('evento.armazenar');
-        Route::delete('/destroy', [])->name('evento.excluir');
-        });
-    
+        Route::get('/', [EventoController::class, 'index'])->name('evento.index');
+        Route::get('/criar', [EventoController::class, 'create'])->name('evento.criar');
+        Route::get('/atualizar', [EventoController::class, 'edit'])->name('evento.atualizar');
+        Route::post('/store', [EventoController::class, 'store'])->name('evento.armazenar');
+        Route::delete('/destroy', [EventoController::class, 'destroy'])->name('evento.excluir');
+    });
+
     // Relatórios
     Route::prefix('relatorios')->group(function () {
-        Route::get('/', [])->name('events.index');
+        Route::get('/', [RelatorioController::class, 'index'])->name('events.index');
+    });
 
-        });
     
 });
