@@ -2,21 +2,25 @@
 
 @section('content')
     <div class="content-header d-flex justify-content-between align-items-center mb-4">
-        <h1>Lista de Eventos</h1>
-        <a href="{{ route('events.create') }}" class="btn btn-create">Criar Novo Evento</a>
+        <h1>Lista de Produtos</h1>
+        <a href="{{ route('products.create') }}" class="btn btn-create">Criar Novo Produto</a>
     </div>
 
-    <form action="{{ route('events.index') }}" method="GET" class="mb-4 d-flex align-items-end">
-        {{-- <select name="order" class="form-control me-2 category-filter">
-            <option value="">Ordenar por</option>
-            <option value="asc" {{ request('order') == 'asc' ? 'selected' : '' }}>Mais Próximos</option>
-            <option value="desc" {{ request('order') == 'desc' ? 'selected' : '' }}>Mais Distantes</option>
+    <form action="{{ route('products.index') }}" method="GET" class="mb-4 d-flex align-items-end">
+        {{-- <select name="category" class="form-control me-2 category-filter">
+            <option value="">Todas as Categorias</option>
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                    {{ $category->nome }}
+                </option>
+            @endforeach
         </select> --}}
-
-        <input type="text" name="search" class="form-control me-2" placeholder="Pesquisar eventos..." value="{{ request('search') }}">
         
 
-
+        
+        <input type="text" name="search" class="form-control me-2" placeholder="Pesquisar produtos..." value="{{ request('search') }}">
+        
+        
         <button type="submit" class="btn btn-primary">Pesquisar</button>
     </form>
 
@@ -24,26 +28,27 @@
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>Data Início</th>
-                <th>Data Fim</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+                <th>Local</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($events as $event)
+            @foreach($products as $product)
                 <tr>
-                    <td>{{ $event->nome }}</td>
-                    <td>{{ \Carbon\Carbon::parse($event->data_inicio)->format('d/m/Y') }}</td>
-                    <td>{{ \Carbon\Carbon::parse($event->data_fim)->format('d/m/Y') }}</td>
+                    <td>{{ $product->nome }}</td>
+                    <td>{{ $product->quantia }}</td>
+                    <td>{{ number_format($product->preco, 2, ',', '.') }}</td>
+                    <td>{{ $product->local }}</td>
                     <td>
-                        <a href="{{ route('events.edit', $event->id) }}" class="btn btn-primary">
+                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary">
                             <i class="fas fa-edit"></i>
                         </a>
-        
-                        <form id="delete-form-{{ $event->id }}" action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline;">
+                        <form id="delete-form-{{ $product->id }}" action="{{ route('products.destroy', $product->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $event->id }})">
+                            <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $product->id }})">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
@@ -54,7 +59,7 @@
     </table>
 
     <script>
-        function confirmDelete(eventId) {
+        function confirmDelete(productId) {
             Swal.fire({
                 title: 'Tem certeza?',
                 text: "Você não poderá reverter isso!",
@@ -66,7 +71,7 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('delete-form-' + eventId).submit();
+                    document.getElementById('delete-form-' + productId).submit();
                 }
             });
         }
@@ -78,19 +83,6 @@
         background-color: #ca88ff; 
         border-color: #6a28a7;
         color: white;
-    }
-
-    .btn-create:hover {
-        background-color: #512188; 
-        border-color: #481e7e;
-    }
-
-    .content-header {
-        padding: 1rem 0;
-    }
-
-    .form-control {
-        width: 100%; 
     }
 
     .table thead {

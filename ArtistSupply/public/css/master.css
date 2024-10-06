@@ -129,3 +129,7 @@ small {
     background-color: #2a0d94;
     border-color: #2a0d94;
 }
+
+.category-filter {
+    width: 250px; /* Ajuste a largura conforme necessário */
+}

@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
 //rota inicial
 Route::get('/', function () {
@@ -44,12 +45,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Estoque
     Route::prefix('estoque')->group(function () {
-        Route::get('/', [EstoqueController::class, 'index'])->name('produto.index');
-        Route::get('/criar', [EstoqueController::class, 'create'])->name('produto.criar');
-        Route::get('/atualizar', [EstoqueController::class, 'edit'])->name('produto.atualizar');
-        Route::post('/store', [EstoqueController::class, 'store'])->name('produto.armazenar');
-        Route::delete('/destroy', [EstoqueController::class, 'destroy'])->name('produto.excluir');
+        Route::get('/', [ProductController::class, 'index'])->name('products.index');
+        Route::get('/criar', [ProductController::class, 'create'])->name('products.create');
+        Route::get('/atualizar/{id}', [ProductController::class, 'edit'])->name('products.edit');
+        Route::post('/store', [ProductController::class, 'store'])->name('products.store');
+        Route::put('/update/{id}', [ProductController::class, 'update'])->name('products.update');
+        Route::delete('/destroy/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
     });
+    
 
     Route::prefix('categorias')->name('categories.')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');

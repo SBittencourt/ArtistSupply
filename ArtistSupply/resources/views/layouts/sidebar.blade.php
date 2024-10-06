@@ -60,7 +60,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/estoque/produtos" class="nav-link">
+                            <a href="/estoque/criar" class="nav-link">
                                 <i class="icon-user-edit nav-icon"></i>
                                 <p>Cadastrar produto</p>
                             </a>
