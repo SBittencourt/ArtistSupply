@@ -13,7 +13,7 @@
             color: white;
             height: 100vh;
             display: flex;
-            flex-direction: column; /* Alinhamento vertical */
+            flex-direction: column; 
             justify-content: center;
             align-items: center;
             overflow: hidden;
@@ -25,7 +25,7 @@
             font-size: 4rem;
             font-family: 'Berkshire Swash', cursive;
             color: white;
-            margin-bottom: 20px; /* Espaçamento abaixo do título */
+            margin-bottom: 20px; 
         }
 
         .welcome-container {
@@ -42,12 +42,12 @@
 
         @media (max-width: 768px) {
             .title {
-                font-size: 2.5rem; /* Tamanho ajustado para telas menores */
-                margin-bottom: 15px; /* Ajuste de margem */
+                font-size: 2.5rem; 
+                margin-bottom: 15px;
             }
 
             .welcome-container {
-                padding: 2rem; /* Menos padding em telas pequenas */
+                padding: 2rem; 
             }
         }
 

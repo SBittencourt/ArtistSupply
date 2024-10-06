@@ -41,6 +41,12 @@ body {
     background-color: #1f0c45; /* Cor do conteúdo mais escura */
 }
 
+.btn-create {
+    background-color: #913ed4; 
+    border-color: #6a28a7;
+    color: white;
+}
+
 /* Ajustar o botão de login */
 .btn-primary {
     background-color: #5e35b1; /* Cor do botão roxa escura */
@@ -48,13 +54,13 @@ body {
 }
 
 .btn-danger {
-    background-color: #5e35b1; /* Cor do botão roxa escura */
-    border-color: #5e35b1;
+    background-color: #744fd9;
+    border-color: #744fd9;
 }
 
 .btn-danger:hover {
-    background-color: #3700b3; /* Cor ao passar o mouse */
-    border-color: #3700b3;
+    background-color: #4e2cc9;
+    border-color: #4e2cc9;
 }
 
 .btn-primary:hover {
@@ -111,5 +117,15 @@ input[type="password"]:focus {
 }
 
 small { 
-    color: #f3e5f5; /* Lavanda Claro */
+    color: #f3e5f5;
+}
+
+.btn-secondary {
+    background-color: #5034b8;
+    border-color: #280f83;
+}
+
+.btn-secondary:hover {
+    background-color: #2a0d94;
+    border-color: #2a0d94;
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EventController;
 
 //rota inicial
 Route::get('/', function () {
@@ -50,17 +51,18 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     // Eventos
-    Route::prefix('events')->group(function () {
-        Route::get('/', [EventoController::class, 'index'])->name('evento.index');
-        Route::get('/criar', [EventoController::class, 'create'])->name('evento.criar');
-        Route::get('/atualizar', [EventoController::class, 'edit'])->name('evento.atualizar');
-        Route::post('/store', [EventoController::class, 'store'])->name('evento.armazenar');
-        Route::delete('/destroy', [EventoController::class, 'destroy'])->name('evento.excluir');
+    Route::prefix('eventos')->group(function () {
+        Route::get('/', [EventController::class, 'index'])->name('events.index');
+        Route::get('/criar', [EventController::class, 'create'])->name('events.create');
+        Route::post('/store', [EventController::class, 'store'])->name('events.store');
+        Route::get('/{event}/editar', [EventController::class, 'edit'])->name('events.edit');
+        Route::put('/{event}', [EventController::class, 'update'])->name('events.update');
+        Route::delete('/{event}', [EventController::class, 'destroy'])->name('events.destroy');
     });
 
     // Relatórios
     Route::prefix('relatorios')->group(function () {
-        Route::get('/', [RelatorioController::class, 'index'])->name('events.index');
+        Route::get('/', [RelatorioController::class, 'index'])->name('relatorios.index');
     });
 
     

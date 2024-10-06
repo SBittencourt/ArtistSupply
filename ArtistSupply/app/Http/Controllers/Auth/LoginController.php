@@ -25,7 +25,7 @@ class LoginController extends Controller
             return redirect()->intended('home');
         }
     
-        return redirect()->route('home')->with('error', 'As credenciais informadas estão incorretas.');
+        return redirect()->route('login')->with('error', 'As credenciais informadas estão incorretas.');
     }
     
 
