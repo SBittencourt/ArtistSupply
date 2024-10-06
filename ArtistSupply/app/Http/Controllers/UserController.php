@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Models\Product;
+use App\Models\Event;
+
 
 use App\Models\User;
 
@@ -14,8 +17,21 @@ class UserController extends Controller
 {
     public function home()
     {
-        return view('home');
+        $user = Auth::user();  
+    
+        $products = Product::where('user_id', $user->id)
+                            ->orderBy('created_at', 'desc')
+                            ->take(3)
+                            ->get();
+    
+        $events = Event::where('user_id', $user->id)
+                        ->orderBy('data_inicio', 'desc')
+                        ->take(3)
+                        ->get();
+    
+        return view('home', compact('products', 'events', 'user'));
     }
+    
 
     public function edit()
     { 
