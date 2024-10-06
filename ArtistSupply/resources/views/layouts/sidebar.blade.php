@@ -42,9 +42,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="/relatorios" class="nav-link">
+                    <a href="/categorias" class="nav-link">
                         <i class="icon-building nav-icon"></i>
-                        <p>Relatórios</p>
+                        <p>Categorias</p>
                     </a>
                 </li>
 

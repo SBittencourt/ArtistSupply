@@ -12,7 +12,7 @@ class EventController extends Controller
     {
         $search = $request->input('search');
 
-        $events = Event::query()
+        $events = Event::where('user_id', Auth::id())
             ->when($search, function ($query, $search) {
                 return $query->where('nome', 'like', '%' . $search . '%');
             })
@@ -20,7 +20,6 @@ class EventController extends Controller
 
         return view('eventos.index', compact('events'));
     }
-
 
     public function create()
     {
@@ -50,14 +49,14 @@ class EventController extends Controller
         return redirect()->route('events.index')->with('success', 'Evento criado com sucesso!');
     }
 
-    public function edit(Event $event)
+    public function edit($id)
     {
+        $event = Event::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
         return view('eventos.edit', compact('event'));
     }
 
-    public function update(Request $request, Event $event)
+    public function update(Request $request, $id)
     {
-
         $request->validate([
             'nome' => 'required|string|max:255',
             'data_inicio' => 'required|date',
@@ -66,6 +65,7 @@ class EventController extends Controller
             'descricao' => 'nullable|string',
         ]);
 
+        $event = Event::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
         $event->update([
             'nome' => $request->nome,
             'data_inicio' => $request->data_inicio,
@@ -78,11 +78,10 @@ class EventController extends Controller
         return redirect()->route('events.index')->with('success', 'Evento atualizado com sucesso!');
     }
 
-
-    public function destroy(Event $event)
+    public function destroy($id)
     {
+        $event = Event::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
         $event->delete();
         return redirect()->route('events.index')->with('success', 'Evento excluído com sucesso!');
     }
-    
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\CategoryController;
 
 //rota inicial
 Route::get('/', function () {
@@ -49,6 +50,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/store', [EstoqueController::class, 'store'])->name('produto.armazenar');
         Route::delete('/destroy', [EstoqueController::class, 'destroy'])->name('produto.excluir');
     });
+
+    Route::prefix('categorias')->name('categories.')->group(function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('index');
+        Route::get('/create', [CategoryController::class, 'create'])->name('create');
+        Route::post('/', [CategoryController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [CategoryController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [CategoryController::class, 'update'])->name('update');
+        Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('destroy');
+    });
+
 
     // Eventos
     Route::prefix('eventos')->group(function () {
