@@ -60,13 +60,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/estoque/criar" class="nav-link">
+                            <a href="/estoque/criar
+                            " class="nav-link">
                                 <i class="icon-user-edit nav-icon"></i>
                                 <p>Cadastrar produto</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/estoque/fornecedores" class="nav-link">
+                            <a href="https://docs.google.com/spreadsheets/u/0/d/1m0L1dx60k05oz-6jqm8h9NDiqRTBc9gOe5X14t2aYw0/htmlview" class="nav-link">
                                 <i class="icon-user-edit nav-icon"></i>
                                 <p>Fornecedores</p>
                             </a>

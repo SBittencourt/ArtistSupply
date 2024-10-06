@@ -41,18 +41,34 @@
 </div>
 
 <script>
-    function formatCurrency(value) {
-        value = value.replace(/\D/g, '');
-        
-        return value.replace(/(\d)(\d{2})$/, "$1,$2")
-                    .replace(/(?=(\d{3})+(\D))/g, "$&.");
+function formatCurrency(value) {
+    value = value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    
+    if (value.length > 2) {
+        // Formata o valor para que tenha sempre 2 casas decimais
+        return value.replace(/(\d{1,})(\d{2})$/, "$1,$2");
     }
+    return value;
+}
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const priceInput = document.getElementById('preco');
+function clearCurrency(value) {
+    // Remove a formatação e garante que o valor seja um número decimal válido
+    return value.replace(/[^\d,]/g, '').replace(',', '.'); // Remove tudo que não seja número ou vírgula e troca a vírgula por ponto
+}
 
-        priceInput.addEventListener('input', function() {
-            this.value = formatCurrency(this.value);
-        });
+document.addEventListener('DOMContentLoaded', function() {
+    const priceInput = document.getElementById('preco');
+
+    priceInput.addEventListener('input', function() {
+        // Enquanto o usuário digita, formatamos o valor para exibição
+        this.value = formatCurrency(this.value);
     });
+
+    const form = priceInput.closest('form'); // Captura o formulário mais próximo
+    form.addEventListener('submit', function() {
+        // Ao submeter, remove a formatação e envia o valor no formato correto (decimal com ponto)
+        priceInput.value = clearCurrency(priceInput.value);
+    });
+});
+
 </script>

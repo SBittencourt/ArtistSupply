@@ -13,20 +13,24 @@ class ProductController extends Controller
     {
         $search = $request->input('search');
         $categoryId = $request->input('category'); 
-
-        $products = Product::where('user_id', Auth::id())
-            ->when($search, function ($query, $search) {
-                return $query->where('nome', 'like', '%' . $search . '%');
+    
+        $products = Product::query()
+            ->when($search, function ($query) use ($search) {
+                return $query->where('nome', 'like', '%' . $search . '%')
+                             ->orWhere('local', 'like', '%' . $search . '%');
             })
-            ->when($categoryId, function ($query, $categoryId) {
+            ->when($categoryId, function ($query) use ($categoryId) {
                 return $query->where('category_id', $categoryId);
             })
+            ->where('user_id', Auth::id()) // Certifique-se de filtrar por usuário
             ->get();
-
-        $categories = Category::where('user_id', Auth::id())->get(); 
-
+    
+        $categories = Category::where('user_id', Auth::id())->get(); // Filtrar categorias por usuário
+    
         return view('products.index', compact('products', 'categories'));
     }
+    
+    
 
 
     public function create()
@@ -54,41 +58,35 @@ class ProductController extends Controller
         $request->validate([
             'nome' => 'required|string|max:255',
             'quantia' => 'required|integer',
-            'preco' => 'required|string', 
+            'preco' => 'required|numeric', // Verifica se é numérico
             'local' => 'required|string|max:255',
             'descricao' => 'nullable|string',
             'extra' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
         ]);
-
-        $preco = str_replace(['.', ','], ['', '.'], $request->input('preco'));
-
-        if (!is_numeric($preco)) {
-            return redirect()->back()->withErrors(['preco' => 'O preço deve ser um número válido.']);
-        }
-
+    
         Product::create([
             'nome' => $request->nome,
             'quantia' => $request->quantia,
-            'preco' => $preco, 
+            'preco' => $request->preco, // Agora o preço já vem no formato correto
             'local' => $request->local,
             'descricao' => $request->descricao,
             'extra' => $request->extra,
             'category_id' => $request->category_id,
             'user_id' => Auth::id(),
         ]);
-
+    
         return redirect()->route('products.index')->with('success', 'Produto criado com sucesso!');
     }
-
+    
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-
+    
         if ($product->user_id !== Auth::id()) {
             return redirect()->route('products.index')->with('error', 'Você não tem permissão para atualizar este produto.');
         }
-
+    
         $request->validate([
             'nome' => 'required|string|max:255',
             'quantia' => 'required|integer',
@@ -98,28 +96,38 @@ class ProductController extends Controller
             'extra' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
         ]);
-
-        $preco = str_replace(['.', ','], ['', '.'], $request->input('preco'));
-
-        if (!is_numeric($preco)) {
+    
+        $precoInput = $request->input('preco');
+    
+        if (!str_contains($precoInput, ',') && !str_contains($precoInput, '.') && strlen($precoInput) > 3) {
+            $precoInput = substr_replace($precoInput, ',', -2, 0);
+        }
+    
+        $precoFormatado = str_replace(',', '.', $precoInput);
+    
+        if (!is_numeric($precoFormatado) || floatval($precoFormatado) < 0) {
             return redirect()->back()->withErrors(['preco' => 'O preço deve ser um número válido.']);
         }
-
+    
+        $precoFormatado = floatval($precoFormatado);
+    
         $product->update([
             'nome' => $request->nome,
             'quantia' => $request->quantia,
-            'preco' => $preco, 
+            'preco' => $precoFormatado,
             'local' => $request->local,
             'descricao' => $request->descricao,
             'extra' => $request->extra,
             'category_id' => $request->category_id,
         ]);
-
+    
         return redirect()->route('products.index')->with('success', 'Produto atualizado com sucesso!');
     }
+    
+    
 
-
-
+    
+    
 
     public function destroy($id)
     {

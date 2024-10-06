@@ -7,19 +7,16 @@
     </div>
 
     <form action="{{ route('products.index') }}" method="GET" class="mb-4 d-flex align-items-end">
-        {{-- <select name="category" class="form-control me-2 category-filter">
+        <select name="category" class="form-control me-2 category-filter">
             <option value="">Todas as Categorias</option>
             @foreach($categories as $category)
                 <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
                     {{ $category->nome }}
                 </option>
             @endforeach
-        </select> --}}
-        
+        </select>
 
-        
         <input type="text" name="search" class="form-control me-2" placeholder="Pesquisar produtos..." value="{{ request('search') }}">
-        
         
         <button type="submit" class="btn btn-primary">Pesquisar</button>
     </form>
@@ -104,7 +101,6 @@
         border-color: #29134e;
     }
 
-    /* Estilo para o filtro de categorias */
     .category-filter {
         width: 150px; /* Ajuste a largura conforme necessário */
     }
