@@ -30,8 +30,8 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 | Sprint |  Entrega   |            Status           | Relatório |
 |:------:|:----------:|:---------------------------:|:---------:|
 | 01     | 09/09/2024 | Finalizada | [Ver entrega]( https://github.com/SBittencourt/ArtistSupply/tree/sprint-1 ) |
-| 02     | 04/10/2024 | :construction: Em Andamento | [Ver entrega]( https://github.com/SBittencourt/ArtistSupply/tree/sprint-2 ) |
-| 03     | 25/10/2024 | Não iniciada | [Ver entrega]( https://github.com/SBittencourt/ArtistSupply/tree/sprint-3 ) |
+| 02     | 04/10/2024 | Finalizada | [Ver entrega]( https://github.com/SBittencourt/ArtistSupply/tree/sprint-2 ) |
+| 03     | 25/10/2024 | :construction: Em Andamento | [Ver entrega]( https://github.com/SBittencourt/ArtistSupply/tree/sprint-3 ) |
 | 04     | 18/11/2024 | Não iniciada | [Ver entrega]( https://github.com/SBittencourt/ArtistSupply/tree/sprint-4 ) |
 | 05     | 06/12/2024 | Não iniciada | [Ver entrega]( https://github.com/SBittencourt/ArtistSupply/tree/sprint-5 ) |
 
