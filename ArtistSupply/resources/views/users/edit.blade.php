@@ -20,7 +20,7 @@
                 @include('users.fields')
                 <div class="row no-print">
                     <div class="col-12">
-                        <button type="submit" class="btn btn-custom float-right" style="margin-right: 5px;">{{ trans('Salvar') }}</button>
+                        <button type="submit" class="btn btn-primary float-right" style="margin-right: 5px;">{{ trans('Salvar') }}</button>
                     </div>
                 </div>
             </form>
