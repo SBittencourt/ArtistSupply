@@ -133,3 +133,123 @@ small {
 .category-filter {
     width: 250px; /* Ajuste a largura conforme necessário */
 }
+
+
+/* Tema Claro */
+body.blue-theme {
+    background-color: #ffffff; /* Fundo branco */
+    color: #0d47a1; /* Texto azul escuro */
+}
+
+.main-sidebar.blue-theme {
+    background: linear-gradient(180deg, #bbdefb, #0d47a1); /* Gradiente azul claro */
+}
+
+.main-sidebar.blue-theme .nav-link {
+    color: #0d47a1; /* Texto das links azuis */
+}
+
+.main-sidebar.blue-theme .nav-link:hover {
+    background-color: #2196f3; /* Cor ao passar o mouse */
+}
+
+.brand-text.blue-theme {
+    color: #0d47a1; /* Texto da marca em azul */
+}
+
+.navbar.blue-theme {
+    background: #0d47a1; /* Navbar azul escura */
+}
+
+.content-wrapper.blue-theme {
+    background-color: #f5f5f5; /* Cor do conteúdo cinza claro */
+}
+
+.btn-create.blue-theme {
+    background-color: #2196f3; /* Botão azul */
+    border-color: #1976d2; 
+    color: white; /* Texto branco no botão */
+}
+
+.btn-primary.blue-theme {
+    background-color: #0d47a1; /* Botão azul escuro */
+    border-color: #0d47a1;
+    color: white; /* Texto branco no botão */
+}
+
+.btn-danger.blue-theme {
+    background-color: #e57373; /* Botão vermelho claro */
+    border-color: #e57373;
+}
+
+.btn-danger.blue-theme:hover {
+    background-color: #c62828; /* Cor ao passar o mouse */
+}
+
+.btn-primary.blue-theme:hover {
+    background-color: #0b3c7d; /* Cor ao passar o mouse */
+}
+
+/* Links */
+a.blue-theme {
+    color: #0d47a1; /* Cor dos links azuis */
+}
+
+a.blue-theme:hover {
+    color: #2196f3; /* Cor dos links ao passar o mouse */
+}
+
+.icon-white.blue-theme {
+    color: #ffffff; /* Ícones brancos */
+}
+
+.form-control.blue-theme {
+    background-color: #ffffff; /* Fundo branco */
+    color: #0d47a1; /* Texto azul escuro */
+    border: 1px solid #0d47a1; 
+}
+
+.form-control.blue-theme:focus {
+    background-color: #ffffff; 
+    color: #0d47a1; /* Texto azul escuro */
+    border-color: #2196f3; 
+    box-shadow: 0 0 5px rgba(25, 118, 210, 0.5); 
+}
+
+.btn-custom.blue-theme {
+    background-color: #0d47a1; 
+    border-color: #0d47a1;
+    color: #ffffff; 
+}
+
+.btn-custom.blue-theme:hover {
+    background-color: #0b3c7d; 
+    border-color: #0b3c7d;
+}
+
+.invoice.blue-theme {
+    background-color: #ffffff; 
+    border-radius: 8px; 
+    padding: 20px; 
+}
+
+input[type="password"].blue-theme:focus {
+    border-color: #0d47a1; 
+}
+
+small.blue-theme { 
+    color: #0d47a1; /* Texto pequeno em azul escuro */
+}
+
+.btn-secondary.blue-theme {
+    background-color: #1976d2; /* Botão secundário azul */
+    border-color: #0d47a1;
+}
+
+.btn-secondary.blue-theme:hover {
+    background-color: #0b3c7d; /* Cor ao passar o mouse */
+}
+
+.category-filter.blue-theme {
+    width: 250px; /* Ajuste a largura conforme necessário */
+}
