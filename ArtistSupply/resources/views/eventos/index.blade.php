@@ -7,16 +7,7 @@
     </div>
 
     <form action="{{ route('events.index') }}" method="GET" class="mb-4 d-flex align-items-end">
-        {{-- <select name="order" class="form-control me-2 category-filter">
-            <option value="">Ordenar por</option>
-            <option value="asc" {{ request('order') == 'asc' ? 'selected' : '' }}>Mais Próximos</option>
-            <option value="desc" {{ request('order') == 'desc' ? 'selected' : '' }}>Mais Distantes</option>
-        </select> --}}
-
         <input type="text" name="search" class="form-control me-2" placeholder="Pesquisar eventos..." value="{{ request('search') }}">
-        
-
-
         <button type="submit" class="btn btn-primary">Pesquisar</button>
     </form>
 
@@ -39,7 +30,14 @@
                         <a href="{{ route('events.edit', $event->id) }}" class="btn btn-primary">
                             <i class="fas fa-edit"></i>
                         </a>
-        
+
+                        <form id="play-form-{{ $event->id }}" action="{{ route('activeEvents.start', $event->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            <button type="button" class="btn btn-success" onclick="startEvent({{ $event->id }})">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </form>
+
                         <form id="delete-form-{{ $event->id }}" action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
@@ -67,6 +65,23 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('delete-form-' + eventId).submit();
+                }
+            });
+        }
+
+        function startEvent(eventId) {
+            Swal.fire({
+                title: 'Iniciar Evento',
+                text: "Tem certeza que deseja iniciar este evento?",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, iniciar!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('play-form-' + eventId).submit();
                 }
             });
         }
@@ -110,6 +125,16 @@
     .btn-primary:hover {
         background-color: #29134e;
         border-color: #29134e;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
     }
 
     /* Estilo para o filtro de categorias */

@@ -9,6 +9,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ActiveEventController;
+
 
 //rota inicial
 Route::get('/', function () {
@@ -78,6 +80,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::prefix('relatorios')->group(function () {
         Route::get('/', [RelatorioController::class, 'index'])->name('relatorios.index');
     });
+
+    // Evento ativo
+    Route::prefix('active-events')->group(function () {
+        Route::post('/{event}/start', [ActiveEventController::class, 'startEvent'])->name('activeEvents.start');
+        Route::post('/{id}/end', [ActiveEventController::class, 'endEvent'])->name('activeEvents.end');
+        Route::post('/{id}/sell/{product}', [ActiveEventController::class, 'sellProduct'])->name('activeEvents.sell');
+        Route::post('/{id}/add-expense', [ActiveEventController::class, 'addExpense'])->name('activeEvents.addExpense');
+        Route::get('/{id}', [ActiveEventController::class, 'show'])->name('activeEvents.show');
+    });
+
 
     
 });
