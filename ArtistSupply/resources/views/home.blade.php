@@ -8,20 +8,21 @@
             </div> 
             <br>
             <div class="col-md-12">
-                <div class="d-flex justify-content-between">
-                    <a href="{{ url('/eventos') }}" class="btn btn-purple-box">
+                <div class="d-flex justify-content-center">
+                    <a href="{{ url('/eventos') }}" class="btn btn-purple">
                         <i class="fas fa-calendar"></i> Eventos
                     </a>
-                    <a href="{{ url('/categorias') }}" class="btn btn-purple-box">
+                    <a href="{{ url('/categorias') }}" class="btn btn-purple">
                         <i class="fas fa-list"></i> Categorias
                     </a>
-                    <a href="{{ url('/estoque') }}" class="btn btn-purple-box">
+                    <a href="{{ url('/estoque') }}" class="btn btn-purple">
                         <i class="fas fa-boxes"></i> Estoque
                     </a>
-                    <a href="{{ url('https://docs.google.com/spreadsheets/u/0/d/1m0L1dx60k05oz-6jqm8h9NDiqRTBc9gOe5X14t2aYw0/htmlview') }}" class="btn btn-purple-box">
+                    <a href="{{ url('https://docs.google.com/spreadsheets/u/0/d/1m0L1dx60k05oz-6jqm8h9NDiqRTBc9gOe5X14t2aYw0/htmlview') }}" class="btn btn-purple">
                         <i class="fas fa-box"></i> Fornecedores
                     </a>
                 </div>
+
             </div>
         </div>
 
@@ -81,47 +82,4 @@
             <a href="{{ route('events.index') }}" class="btn btn-primary">Ver mais Eventos</a>
         </div>
     </div>
-@endsection
-
-@section('styles')
-    <style>
-        .btn-purple-box {
-            background-color: #6f42c1; 
-            color: white;
-            border: none;
-            width: 23%; 
-            height: 100px; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            border-radius: 8px; 
-            text-decoration: none; 
-        }
-
-        .btn-purple-box:hover {
-            filter: brightness(90%);
-        }
-
-        .table {
-            margin-bottom: 1.5rem;
-        }
-
-        .btn-primary {
-            background-color: #6f42c1;
-            border-color: #6f42c1;
-        }
-
-        .btn-primary:hover {
-            background-color: #5a30a1;
-            border-color: #5a30a1;
-        }
-
-        @media (max-width: 768px) {
-            .btn-purple-box {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-        }
-    </style>
 @endsection

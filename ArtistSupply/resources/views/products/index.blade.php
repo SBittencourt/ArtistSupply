@@ -75,33 +75,3 @@
     </script>
 @endsection
 
-<style>
-    .btn-create {
-        background-color: #ca88ff; 
-        border-color: #6a28a7;
-        color: white;
-    }
-
-    .table thead {
-        background-color: #3e1f78; 
-        color: white;
-    }
-
-    .table tbody tr:hover {
-        background-color: #32136d; 
-    }
-
-    .btn-primary {
-        background-color: #3e1f78;
-        border-color: #3e1f78;
-    }
-
-    .btn-primary:hover {
-        background-color: #29134e;
-        border-color: #29134e;
-    }
-
-    .category-filter {
-        width: 150px; /* Ajuste a largura conforme necessário */
-    }
-</style>

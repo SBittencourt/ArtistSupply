@@ -114,3 +114,23 @@ function closeModalNewBoard() {
     $('#newBoard').modal('hide');
 }
 </script>
+
+<style>
+    .sidebar .nav-link {
+    text-align: center; /* Centraliza o texto */
+    }
+
+    .sidebar .nav-item {
+        margin-bottom: 10px; /* Espaço entre os itens */
+    }
+
+    .brand-link {
+        display: flex;               /* Ativa flexbox */
+        justify-content: center;     /* Centraliza horizontalmente */
+        align-items: center;         /* Centraliza verticalmente */
+        height: 60px;                /* Altura do container (ajuste conforme necessário) */
+        text-align: center;          /* Centraliza o texto */
+    }
+
+
+</style>
