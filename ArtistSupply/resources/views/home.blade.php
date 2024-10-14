@@ -9,16 +9,16 @@
             <br>
             <div class="col-md-12">
                 <div class="d-flex justify-content-center">
-                    <a href="{{ url('/eventos') }}" class="btn btn-purple">
+                    <a href="{{ url('/eventos') }}" class="btn btn-primary ml-1 mr-1">
                         <i class="fas fa-calendar"></i> Eventos
                     </a>
-                    <a href="{{ url('/categorias') }}" class="btn btn-purple">
+                    <a href="{{ url('/categorias') }}" class="btn btn-primary ml-1 mr-1">
                         <i class="fas fa-list"></i> Categorias
                     </a>
-                    <a href="{{ url('/estoque') }}" class="btn btn-purple">
+                    <a href="{{ url('/estoque') }}" class="btn btn-primary ml-1 mr-1">
                         <i class="fas fa-boxes"></i> Estoque
                     </a>
-                    <a href="{{ url('https://docs.google.com/spreadsheets/u/0/d/1m0L1dx60k05oz-6jqm8h9NDiqRTBc9gOe5X14t2aYw0/htmlview') }}" class="btn btn-purple">
+                    <a href="{{ url('https://docs.google.com/spreadsheets/u/0/d/1m0L1dx60k05oz-6jqm8h9NDiqRTBc9gOe5X14t2aYw0/htmlview') }}" class="btn btn-primary ml-1 mr-1">
                         <i class="fas fa-box"></i> Fornecedores
                     </a>
                 </div>
@@ -28,7 +28,7 @@
 
         <div class="row mt-5">
             <div class="col-md-12">
-                <h3>Produtos recentemente adicionados</h3>
+                <h3 class="mb-3">Produtos recentemente adicionados</h3>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -56,7 +56,7 @@
             </div>
 
             <div class="col-md-12 mt-5">
-                <h3>Eventos recentemente adicionados</h3>
+                <h3 class="mb-3">Eventos recentemente adicionados</h3>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -79,7 +79,7 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="{{ route('events.index') }}" class="btn btn-primary">Ver mais Eventos</a>
+            <a href="{{ route('events.index') }}" class="btn btn-primary mb-5">Ver mais Eventos</a>
         </div>
     </div>
 @endsection

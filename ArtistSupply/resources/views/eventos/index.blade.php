@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="content-header d-flex justify-content-between align-items-center mb-4">
-        <h1>Lista de Eventos</h1>
+        <h1 class="ml-4">Lista de Eventos</h1>
         <a href="{{ route('events.create') }}" class="btn btn-create">Criar Novo Evento</a>
     </div>
 
     <form action="{{ route('events.index') }}" method="GET" class="mb-4 d-flex align-items-end">
         <input type="text" name="search" class="form-control me-2" placeholder="Pesquisar eventos..." value="{{ request('search') }}">
-        <button type="submit" class="btn btn-primary">Pesquisar</button>
+        <button type="submit" class="btn btn-primary ml-2">Pesquisar</button>
     </form>
 
     <table class="table table-bordered">

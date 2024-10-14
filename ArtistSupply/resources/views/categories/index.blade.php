@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="content-header d-flex justify-content-between align-items-center mb-4">
-        <h1>Lista de Categorias</h1>
+        <h1 class="ml-4">Lista de Categorias</h1>
         <a href="{{ route('categories.create') }}" class="btn btn-create">Criar Nova Categoria</a>
     </div>
 
