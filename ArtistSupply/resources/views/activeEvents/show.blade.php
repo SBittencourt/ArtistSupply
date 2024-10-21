@@ -1,152 +1,84 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container text-light">
-    <h1 class="text-center mb-4">Evento Ativo: {{ $activeEvent->event->nome }}</h1>
-    <p class="text-center">Tempo: <span id="eventTimer" class="font-weight-bold"></span></p>
+<div class="container">
+    <h1 class="my-4">Evento Ativo: {{ $activeEvent->event->nome }}</h1>
+    <p><strong>Início:</strong> {{ $activeEvent->start_time }}</p>
+    <p><strong>Total Bruto:</strong> R$ {{ number_format($activeEvent->total_gross, 2) }}</p>
+    <p><strong>Total Despesas:</strong> R$ {{ number_format($activeEvent->total_expense, 2) }}</p>
+    @if(isset($totalProfit))
+        <p><strong>Lucro Total:</strong> R$ {{ number_format($totalProfit, 2) }}</p> 
+    @endif
 
-    <h3 class="mt-4">Produtos</h3>
-    <ul class="list-group mb-4">
-        @foreach ($products as $product)
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <div>
-                    <strong>{{ $product->nome }}</strong> (Em estoque: <span class="badge bg-info">{{ $product->quantia }}</span>)
-                </div>
-                <div class="d-flex align-items-center">
-                    <button class="btn btn-secondary me-2" onclick="updateQuantity({{ $product->id }}, -1)">-</button>
-                    <input type="number" id="quantity-{{ $product->id }}" name="quantity" min="1" max="{{ $product->quantia }}" value="1" style="width: 50px;" class="text-center mx-2" onchange="validateQuantity({{ $product->id }})">
-                    <button class="btn btn-secondary" onclick="updateQuantity({{ $product->id }}, 1)">+</button>
-                    <form action="{{ route('activeEvents.sell', [$activeEvent->id, $product->id]) }}" method="POST" class="ms-3" onsubmit="return validateForm({{ $product->id }}, event)">
-                        @csrf
-                        <input type="hidden" name="quantity" id="quantity-hidden-{{ $product->id }}" value="1">
-                        <button type="submit" class="btn btn-success">Vender</button>
-                    </form>
-                </div>
-            </li>
-        @endforeach
-    </ul>
+    <h3 class="my-4">Produtos Vendidos</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade Vendida</th>
+                <th>Valor Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(isset($soldProducts))
+                @foreach($soldProducts as $product)
+                    <tr>
+                        <td>{{ $product->nome }}</td>
+                        <td>{{ $product->pivot->quantity_sold }}</td>
+                        <td>R$ {{ number_format($product->pivot->total_value, 2) }}</td>
+                    </tr>
+                @endforeach
+            @endif
+        </tbody>
+    </table>
 
-    <h3 class="mt-4">Resumo</h3>
-    <div class="summary-card p-3 mb-4">
-        <p><strong>Total Vendido:</strong> R$ {{ $activeEvent->total_gross }}</p>
-        <p><strong>Total de Gastos:</strong> R$ {{ $activeEvent->total_expense }}</p>
-        <p><strong>Lucro:</strong> R$ {{ $activeEvent->total_profit }}</p>
-    </div>
+    <h3 class="my-4">Adicionar Venda</h3>
+    @if(isset($products) && $products->count() > 0)
+        <form action="" method="POST" id="sellForm" class="mb-4">
+            @csrf
+            <div class="form-group">
+                <label for="productSelect">Selecione um Produto:</label>
+                <select name="product_id" id="productSelect" class="form-control" onchange="updateFormAction(this)">
+                    <option value="">Selecione um produto</option>
+                    @foreach($products as $product)
+                        <option value="{{ $product->id }}">{{ $product->nome }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quantityInput">Quantidade:</label>
+                <input type="number" name="quantity" id="quantityInput" class="form-control" placeholder="Quantidade" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Adicionar Venda</button>
+        </form>
+    @endif
 
-    <div class="text-center">
-        <button class="btn btn-danger" id="finalizeButton">Finalizar Evento</button>
-    </div>
+    <h3 class="my-4">Adicionar Despesa</h3>
+    <form action="{{ route('activeEvents.addExpense', $activeEvent->id) }}" method="POST" class="mb-4">
+        @csrf
+        <div class="form-group">
+            <label for="expenseInput">Valor da Despesa:</label>
+            <input type="number" name="expense" id="expenseInput" class="form-control" placeholder="Valor da Despesa" required>
+        </div>
+        <button type="submit" class="btn btn-danger">Adicionar Despesa</button>
+    </form>
+
+    <form action="{{ route('activeEvents.end', $activeEvent->id) }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-danger mt-2">Finalizar Evento</button>
+    </form>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-function startTimer() {
-    const startTime = new Date("{{ $activeEvent->start_time }}").getTime(); // Usamos getTime() para obter o timestamp
-    console.log("Start Time:", startTime); // Log para verificar o tempo de início
-    const timerElement = document.getElementById('eventTimer');
+    function updateFormAction(select) {
+        const selectedValue = select.value;
+        const form = document.getElementById('sellForm');
 
-    function updateTimer() {
-        const currentTime = new Date().getTime(); // Usamos getTime() para obter o timestamp atual
-        const elapsed = currentTime - startTime; // Calcula o tempo decorrido em milissegundos
-        console.log("Current Time:", currentTime); // Log para verificar o tempo atual
-        console.log("Elapsed Time:", elapsed); // Log para verificar o tempo decorrido
-
-        if (elapsed < 0) {
-            timerElement.innerText = "00:00:00"; // Se o tempo for negativo, exibe 0
-            return;
-        }
-
-        const hours = Math.floor(elapsed / 3600000);
-        const minutes = Math.floor((elapsed % 3600000) / 60000);
-        const seconds = Math.floor((elapsed % 60000) / 1000);
-
-        timerElement.innerText = 
-            String(hours).padStart(2, '0') + ':' +
-            String(minutes).padStart(2, '0') + ':' +
-            String(seconds).padStart(2, '0');
-    }
-
-    setInterval(updateTimer, 1000);
-}
-
-
-
-    function updateQuantity(productId, change) {
-        const quantityInput = document.getElementById('quantity-' + productId);
-        let currentQuantity = parseInt(quantityInput.value);
-
-        if (currentQuantity + change >= 1 && currentQuantity + change <= parseInt(quantityInput.max)) {
-            quantityInput.value = currentQuantity + change;
-            document.getElementById('quantity-hidden-' + productId).value = quantityInput.value; // Atualiza o campo oculto
+        if (selectedValue) {
+            form.action = "{{ route('activeEvents.sell', ['activeEventId' => '__activeEventId__', 'productId' => '__productId__']) }}".replace('__activeEventId__', '{{ $activeEvent->id }}').replace('__productId__', selectedValue);
+        } else {
+            form.action = '';
         }
     }
-
-    function validateQuantity(productId) {
-        const quantityInput = document.getElementById('quantity-' + productId);
-        const maxQuantity = parseInt(quantityInput.max);
-
-        // Ajusta para que não exceda o máximo
-        if (parseInt(quantityInput.value) > maxQuantity) {
-            quantityInput.value = maxQuantity;
-        } else if (parseInt(quantityInput.value) < 1) {
-            quantityInput.value = 1;
-        }
-        document.getElementById('quantity-hidden-' + productId).value = quantityInput.value; // Atualiza o campo oculto
-    }
-
-    function validateForm(productId, event) {
-        const quantityInput = document.getElementById('quantity-' + productId);
-        if (parseInt(quantityInput.value) < 1) {
-            event.preventDefault(); // Impede o envio do formulário
-            alert('A quantidade deve ser pelo menos 1.');
-            return false;
-        }
-        return true; // Permite o envio do formulário
-    }
-
-    document.getElementById('finalizeButton').addEventListener('click', function() {
-        Swal.fire({
-            title: 'Você tem certeza?',
-            text: "Deseja realmente finalizar o evento?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Sim, finalizar!',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Substitua o método abaixo pela chamada ao endpoint de finalização
-                document.querySelector('form[action="{{ route('activeEvents.end', $activeEvent->id) }}"]').submit();
-            }
-        });
-    });
-
-    window.onload = startTimer;
 </script>
-
-<style>
-    body {
-        background-color: #343a40; /* Cor de fundo escura */
-    }
-    .summary-card {
-        background-color: #495057; 
-        border: 1px solid #6c757d; 
-        border-radius: 0.5rem;
-        color: #f8f9fa;
-    }
-    .list-group-item {
-        background-color: #495057;
-        border: 1px solid #6c757d;
-    }
-    .btn-secondary {
-        width: 40px; /* Define a largura dos botões */
-    }
-    .text-center {
-        text-align: center;
-    }
-    .font-weight-bold {
-        font-weight: bold;
-    }
-</style>
 @endsection

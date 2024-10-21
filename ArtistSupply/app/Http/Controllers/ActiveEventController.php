@@ -9,15 +9,9 @@ use Illuminate\Http\Request;
 
 class ActiveEventController extends Controller
 {
-    // Inicia um novo evento ativo
     public function startEvent($eventId)
     {
         $event = Event::findOrFail($eventId);
-
-        // Verifica se o evento pertence ao usuário logado
-        if ($event->user_id !== auth()->id()) {
-            return response()->json(['error' => 'Você não tem permissão para iniciar este evento.'], 403);
-        }
 
         $activeEvent = ActiveEvent::create([
             'event_id' => $eventId,
@@ -28,35 +22,35 @@ class ActiveEventController extends Controller
         return redirect()->route('activeEvents.show', $activeEvent->id);
     }
 
-    // Termina um evento ativo
     public function endEvent($activeEventId)
     {
         $activeEvent = ActiveEvent::findOrFail($activeEventId);
 
-        // Verifica se o evento pertence ao usuário logado
         if ($activeEvent->user_id !== auth()->id()) {
             return response()->json(['error' => 'Você não tem permissão para finalizar este evento.'], 403);
         }
 
-        $activeEvent->end_time = now();
+        $activeEvent->end_time = now(); 
         $activeEvent->total_profit = $activeEvent->total_gross - $activeEvent->total_expense;
         $activeEvent->save();
 
         return view('activeEvents.summary', compact('activeEvent'));
     }
 
-    // Vender produto e atualizar o evento ativo
     public function sellProduct(Request $request, $activeEventId, $productId)
     {
         $activeEvent = ActiveEvent::findOrFail($activeEventId);
         $product = Product::findOrFail($productId);
 
-        // Verifica se o produto e o evento pertencem ao usuário logado
         if ($activeEvent->user_id !== auth()->id() || $product->user_id !== auth()->id()) {
             return response()->json(['error' => 'Você não tem permissão para realizar esta venda.'], 403);
         }
 
         $quantitySold = $request->input('quantity');
+        if ($quantitySold > $product->quantia) {
+            return response()->json(['error' => 'Quantidade insuficiente no estoque.'], 400);
+        }
+
         $product->quantia -= $quantitySold;
         $product->save();
 
@@ -73,7 +67,6 @@ class ActiveEventController extends Controller
         return redirect()->route('activeEvents.show', $activeEvent->id);
     }
 
-    // Adiciona gastos ao evento ativo
     public function addExpense(Request $request, $activeEventId)
     {
         $activeEvent = ActiveEvent::findOrFail($activeEventId);
@@ -83,13 +76,13 @@ class ActiveEventController extends Controller
         }
 
         $expenseAmount = $request->input('expense');
+
         $activeEvent->total_expense += $expenseAmount;
         $activeEvent->save();
 
         return redirect()->route('activeEvents.show', $activeEvent->id);
     }
 
-    // Exibe os detalhes do evento ativo
     public function show($id)
     {
         $activeEvent = ActiveEvent::findOrFail($id);
@@ -99,6 +92,8 @@ class ActiveEventController extends Controller
         }
 
         $products = Product::where('user_id', auth()->id())->get();
-        return view('activeEvents.show', compact('activeEvent', 'products'));
+        $soldProducts = $activeEvent->products;
+
+        return view('activeEvents.show', compact('activeEvent', 'products', 'soldProducts'));
     }
 }

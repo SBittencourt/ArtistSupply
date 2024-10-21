@@ -38,12 +38,12 @@
         </li>
     </ul>
 
-    <div class="navbar-custom">
+    <!-- <div class="navbar-custom">
         <button id="themeToggle" class="btn btn-primary" title="Alternar Tema">
-            <span class="color-circle" style="background-color: #121212;"></span> <!-- Cor do tema escuro -->
-            <span class="color-circle" style="background-color: #ffffff;"></span> <!-- Cor do tema claro -->
+            <span class="color-circle" style="background-color: #121212;"></span> 
+            <span class="color-circle" style="background-color: #ffffff;"></span> 
         </button>
-    </div>
+    </div> -->
 
     <ul class="navbar-nav ml-auto">  
         <li class="nav-item">
@@ -54,7 +54,7 @@
     </ul>
 </nav>
 
-<script>
+<!-- <script>
 
 document.getElementById('themeToggle').addEventListener('click', function() {
     // Alterna a classe de tema
@@ -82,4 +82,4 @@ document.getElementById('themeToggle').addEventListener('click', function() {
     });
 });
 
-</script>
+</script> -->

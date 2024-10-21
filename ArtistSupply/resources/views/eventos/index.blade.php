@@ -27,17 +27,27 @@
                     <td>{{ \Carbon\Carbon::parse($event->data_inicio)->format('d/m/Y') }}</td>
                     <td>{{ \Carbon\Carbon::parse($event->data_fim)->format('d/m/Y') }}</td>
                     <td>
+                        <!-- Botão de editar evento -->
                         <a href="{{ route('events.edit', $event->id) }}" class="btn btn-primary">
                             <i class="fas fa-edit"></i>
                         </a>
 
-                        <form id="play-form-{{ $event->id }}" action="{{ route('activeEvents.start', $event->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            <button type="button" class="btn btn-success" onclick="startEvent({{ $event->id }})">
-                                <i class="fas fa-play"></i>
-                            </button>
-                        </form>
+                        <!-- Se o evento estiver ativo (sem end_time), mostrar o botão Visualizar -->
+                        @if($event->activeEvent && is_null($event->activeEvent->end_time))
+                            <a href="{{ route('activeEvents.show', $event->activeEvent->id) }}" class="btn btn-info">
+                                <i class="fas fa-eye"></i> Visualizar
+                            </a>
+                        @else
+                            <!-- Caso contrário, permitir iniciar o evento -->
+                            <form id="play-form-{{ $event->id }}" action="{{ route('activeEvents.start', $event->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="button" class="btn btn-success" onclick="startEvent({{ $event->id }})">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </form>
+                        @endif
 
+                        <!-- Botão de deletar evento -->
                         <form id="delete-form-{{ $event->id }}" action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
@@ -87,5 +97,3 @@
         }
     </script>
 @endsection
-
-

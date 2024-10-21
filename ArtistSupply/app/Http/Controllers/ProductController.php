@@ -22,7 +22,7 @@ class ProductController extends Controller
             ->when($categoryId, function ($query) use ($categoryId) {
                 return $query->where('category_id', $categoryId);
             })
-            ->where('user_id', Auth::id()) // Certifique-se de filtrar por usuário
+            ->where('user_id', Auth::id()) 
             ->get();
     
         $categories = Category::where('user_id', Auth::id())->get(); // Filtrar categorias por usuário
@@ -58,7 +58,7 @@ class ProductController extends Controller
         $request->validate([
             'nome' => 'required|string|max:255',
             'quantia' => 'required|integer',
-            'preco' => 'required|numeric', // Verifica se é numérico
+            'preco' => 'required|numeric', 
             'local' => 'required|string|max:255',
             'descricao' => 'nullable|string',
             'extra' => 'nullable|string',

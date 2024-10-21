@@ -223,17 +223,17 @@ small {
 
 /* Estilo para o filtro de categorias */
 .category-filter {
-    width: 150px; /* Ajuste a largura conforme necessário */
+    width: 150px;
 }
 
 /* Tema Claro */
 body.blue-theme {
-    background-color: #ffffff; /* Fundo branco */
-    color: #0d47a1; /* Texto azul escuro */
+    background-color: #ffffff;
+    color: #0d47a1; 
 }
 
 .main-sidebar.blue-theme {
-    background: linear-gradient(180deg, #3013a5, #0d47a1); /* Gradiente azul claro */
+    background: linear-gradient(180deg, #3013a5, #0d47a1); 
 }
 
 .main-sidebar.blue-theme .nav-link {
