@@ -3,7 +3,6 @@
 @section('content')
     <div class="content-header d-flex justify-content-between align-items-center mb-4">
         <h1 class="ml-4">Eventos Ativos</h1>
-        <a href="{{ route('events.create') }}" class="btn btn-create">Criar Novo Evento</a>
     </div>
 
     <form action="{{ route('activeEvents.index') }}" method="GET" class="mb-4 d-flex align-items-end">

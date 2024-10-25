@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Models\ActiveEvent;
 use App\Models\Product;
@@ -12,59 +12,51 @@ class ActiveEventController extends Controller
     public function startEvent($eventId)
     {
         $event = Event::findOrFail($eventId);
-    
-        // Verifique se o evento já tem um evento ativo não finalizado
         $activeEvent = $event->activeEvent()->whereNull('end_time')->first();
-    
+
         if ($activeEvent) {
-            // Redireciona para a visualização do evento ativo, se já estiver em andamento
-            return redirect()->route('activeEvents.show', $activeEvent->id);
+            return response()->json($activeEvent, 200);
         }
-    
-        // Caso contrário, cria um novo evento ativo
+
         $activeEvent = ActiveEvent::create([
             'event_id' => $eventId,
             'user_id' => auth()->id(),
             'start_time' => now(),
         ]);
-    
-        return redirect()->route('activeEvents.show', $activeEvent->id);
+
+        return response()->json($activeEvent, 201);
     }
-    
 
     public function endEvent($activeEventId)
     {
         $activeEvent = ActiveEvent::findOrFail($activeEventId);
-    
+
         if ($activeEvent->user_id !== auth()->id()) {
             return response()->json(['error' => 'Você não tem permissão para finalizar este evento.'], 403);
         }
-    
-        $activeEvent->end_time = now(); 
+
+        $activeEvent->end_time = now();
         $activeEvent->total_profit = $activeEvent->total_gross - $activeEvent->total_expense;
         $activeEvent->save();
-    
-        return redirect()->route('activeEvents.summary', $activeEvent->id);
+
+        return response()->json($activeEvent);
     }
-    
 
     public function summary($activeEventId)
     {
         $activeEvent = ActiveEvent::findOrFail($activeEventId);
-    
+
         if ($activeEvent->user_id !== auth()->id()) {
             return response()->json(['error' => 'Você não tem permissão para visualizar este resumo.'], 403);
         }
-    
+
         $soldProducts = $activeEvent->products;
-    
-        return view('activeEvents.summary', compact('activeEvent', 'soldProducts'));
+
+        return response()->json([
+            'activeEvent' => $activeEvent,
+            'soldProducts' => $soldProducts,
+        ]);
     }
-    
-
-
-
-    
 
     public function sellProduct(Request $request, $activeEventId, $productId)
     {
@@ -93,7 +85,7 @@ class ActiveEventController extends Controller
         $activeEvent->total_gross += $totalValue;
         $activeEvent->save();
 
-        return redirect()->route('activeEvents.show', $activeEvent->id);
+        return response()->json($activeEvent);
     }
 
     public function addExpense(Request $request, $activeEventId)
@@ -109,7 +101,7 @@ class ActiveEventController extends Controller
         $activeEvent->total_expense += $expenseAmount;
         $activeEvent->save();
 
-        return redirect()->route('activeEvents.show', $activeEvent->id);
+        return response()->json($activeEvent);
     }
 
     public function show($id)
@@ -123,29 +115,33 @@ class ActiveEventController extends Controller
         $products = Product::where('user_id', auth()->id())->get();
         $soldProducts = $activeEvent->products;
 
-        return view('activeEvents.show', compact('activeEvent', 'products', 'soldProducts'));
+        return response()->json([
+            'activeEvent' => $activeEvent,
+            'products' => $products,
+            'soldProducts' => $soldProducts,
+        ]);
     }
 
     public function index(Request $request)
     {
         $eventId = $request->input('event_id');
         $search = $request->input('search');
-    
+
         $activeEvents = ActiveEvent::with('event')
             ->where('user_id', auth()->id())
             ->when($eventId, function ($query) use ($eventId) {
-                $query->where('event_id', $eventId); 
+                $query->where('event_id', $eventId);
             })
-            ->whereHas('event', function($query) use ($search) {
+            ->whereHas('event', function ($query) use ($search) {
                 if ($search) {
-                    $query->where('nome', 'like', '%' . $search . '%'); 
+                    $query->where('nome', 'like', '%' . $search . '%');
                 }
             })
             ->get();
-    
-        return view('activeEvents.index', compact('activeEvents'));
+
+        return response()->json($activeEvents);
     }
-    
+
     public function destroy($id)
     {
         $activeEvent = ActiveEvent::findOrFail($id);
@@ -154,10 +150,8 @@ class ActiveEventController extends Controller
             return response()->json(['error' => 'Você não tem permissão para excluir este evento.'], 403);
         }
 
-        $activeEvent->delete(); // Exclui o evento ativo
+        $activeEvent->delete();
 
-        return redirect()->route('activeEvents.index')->with('success', 'Evento ativo excluído com sucesso.');
+        return response()->json(['message' => 'Evento ativo excluído com sucesso.']);
     }
-
-
 }
