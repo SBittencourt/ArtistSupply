@@ -32,13 +32,18 @@
                             <i class="fas fa-edit"></i>
                         </a>
 
-                        <!-- Se o evento estiver ativo (sem end_time), mostrar o botão Visualizar -->
-                        @if($event->activeEvent && is_null($event->activeEvent->end_time))
-                            <a href="{{ route('activeEvents.show', $event->activeEvent->id) }}" class="btn btn-info">
-                                <i class="fas fa-eye"></i> Visualizar
-                            </a>
+                        <!-- Botão para visualizar ou iniciar evento ativo -->
+                        @if($event->activeEvent)
+                            @if(is_null($event->activeEvent->end_time))
+                                <a href="{{ route('activeEvents.show', $event->activeEvent->id) }}" class="btn btn-info">
+                                    <i class="fas fa-eye"></i> Visualizar
+                                </a>
+                            @else
+                                <a href="{{ route('activeEvents.summary', $event->activeEvent->id) }}" class="btn btn-secondary">
+                                    <i class="fas fa-file-alt"></i> Sumário
+                                </a>
+                            @endif
                         @else
-                            <!-- Caso contrário, permitir iniciar o evento -->
                             <form id="play-form-{{ $event->id }}" action="{{ route('activeEvents.start', $event->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 <button type="button" class="btn btn-success" onclick="startEvent({{ $event->id }})">
@@ -46,6 +51,12 @@
                                 </button>
                             </form>
                         @endif
+
+                        <!-- Botão para ver todos os eventos ativos desse evento -->
+                        <a href="{{ route('activeEvents.index', ['event_id' => $event->id]) }}" class="btn btn-info">
+                            Ver Eventos Ativos deste Evento
+                        </a>
+
 
                         <!-- Botão de deletar evento -->
                         <form id="delete-form-{{ $event->id }}" action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline;">

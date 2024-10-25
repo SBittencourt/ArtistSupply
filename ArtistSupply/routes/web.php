@@ -83,12 +83,16 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Evento ativo
     Route::prefix('active-events')->group(function () {
+        Route::get('/', [ActiveEventController::class, 'index'])->name('activeEvents.index'); 
         Route::post('/{event}/start', [ActiveEventController::class, 'startEvent'])->name('activeEvents.start');
         Route::post('/{id}/end', [ActiveEventController::class, 'endEvent'])->name('activeEvents.end');
         Route::post('/{activeEventId}/sell/{productId}', [ActiveEventController::class, 'sellProduct'])->name('activeEvents.sell');
         Route::post('/{id}/add-expense', [ActiveEventController::class, 'addExpense'])->name('activeEvents.addExpense');
         Route::get('/{id}', [ActiveEventController::class, 'show'])->name('activeEvents.show');
+        Route::get('/{activeEventId}/summary', [ActiveEventController::class, 'summary'])->name('activeEvents.summary');
+        Route::delete('/{id}/delete', [ActiveEventController::class, 'destroy'])->name('activeEvents.destroy');
     });
+    
 
 
 

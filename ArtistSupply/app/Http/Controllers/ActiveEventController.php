@@ -12,30 +12,60 @@ class ActiveEventController extends Controller
     public function startEvent($eventId)
     {
         $event = Event::findOrFail($eventId);
-
+    
+        // Verifique se o evento já tem um evento ativo não finalizado
+        $activeEvent = $event->activeEvent()->whereNull('end_time')->first();
+    
+        if ($activeEvent) {
+            // Redireciona para a visualização do evento ativo, se já estiver em andamento
+            return redirect()->route('activeEvents.show', $activeEvent->id);
+        }
+    
+        // Caso contrário, cria um novo evento ativo
         $activeEvent = ActiveEvent::create([
             'event_id' => $eventId,
             'user_id' => auth()->id(),
             'start_time' => now(),
         ]);
-
+    
         return redirect()->route('activeEvents.show', $activeEvent->id);
     }
+    
 
     public function endEvent($activeEventId)
     {
         $activeEvent = ActiveEvent::findOrFail($activeEventId);
-
+    
         if ($activeEvent->user_id !== auth()->id()) {
             return response()->json(['error' => 'Você não tem permissão para finalizar este evento.'], 403);
         }
-
+    
         $activeEvent->end_time = now(); 
         $activeEvent->total_profit = $activeEvent->total_gross - $activeEvent->total_expense;
         $activeEvent->save();
-
-        return view('activeEvents.summary', compact('activeEvent'));
+    
+        return redirect()->route('activeEvents.summary', $activeEvent->id);
     }
+    
+
+    public function summary($activeEventId)
+    {
+        $activeEvent = ActiveEvent::findOrFail($activeEventId);
+    
+        if ($activeEvent->user_id !== auth()->id()) {
+            return response()->json(['error' => 'Você não tem permissão para visualizar este resumo.'], 403);
+        }
+    
+        // Carregar os produtos vendidos
+        $soldProducts = $activeEvent->products;
+    
+        return view('activeEvents.summary', compact('activeEvent', 'soldProducts'));
+    }
+    
+
+
+
+    
 
     public function sellProduct(Request $request, $activeEventId, $productId)
     {
@@ -96,4 +126,39 @@ class ActiveEventController extends Controller
 
         return view('activeEvents.show', compact('activeEvent', 'products', 'soldProducts'));
     }
+
+    public function index(Request $request)
+    {
+        $eventId = $request->input('event_id');
+        $search = $request->input('search');
+    
+        $activeEvents = ActiveEvent::with('event')
+            ->where('user_id', auth()->id())
+            ->when($eventId, function ($query) use ($eventId) {
+                $query->where('event_id', $eventId); 
+            })
+            ->whereHas('event', function($query) use ($search) {
+                if ($search) {
+                    $query->where('nome', 'like', '%' . $search . '%'); 
+                }
+            })
+            ->get();
+    
+        return view('activeEvents.index', compact('activeEvents'));
+    }
+    
+    public function destroy($id)
+    {
+        $activeEvent = ActiveEvent::findOrFail($id);
+
+        if ($activeEvent->user_id !== auth()->id()) {
+            return response()->json(['error' => 'Você não tem permissão para excluir este evento.'], 403);
+        }
+
+        $activeEvent->delete(); // Exclui o evento ativo
+
+        return redirect()->route('activeEvents.index')->with('success', 'Evento ativo excluído com sucesso.');
+    }
+
+
 }

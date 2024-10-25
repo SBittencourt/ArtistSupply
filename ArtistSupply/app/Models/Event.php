@@ -23,4 +23,10 @@ class Event extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function activeEvent()
+    {
+        return $this->hasOne(ActiveEvent::class)->whereNull('end_time');
+    }
+
 }
