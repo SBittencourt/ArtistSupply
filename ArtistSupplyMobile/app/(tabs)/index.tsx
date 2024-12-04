@@ -22,15 +22,15 @@ export default function LoginScreen() {
 
     setLoading(true);
     try {
-      const response = await axios.post('127.0.0.1/api/auth/login', {
+      const response = await axios.post('http://localhost:8000/api/api/auth/login', {
         email,
         password,
       });
-      Alert.alert('Sucesso', 'Login realizado com sucesso!');
-      console.log('User Data:', response.data.user);
-    } catch (error) {
-      console.error(error);
-      Alert.alert('Erro', 'Credenciais inválidas. Tente novamente.');
+      console.log('Login bem-sucedido:', response.data); // Log do sucesso
+        Alert.alert('Sucesso', 'Login realizado com sucesso!');
+      } catch (error) {
+        console.error('Erro no login:', error); // Log do erro
+        Alert.alert('Erro', 'Credenciais inválidas. Tente novamente.');
     } finally {
       setLoading(false);
     }
