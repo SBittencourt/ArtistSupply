@@ -28,6 +28,10 @@ Route::prefix('api')->group(function () {
 
     // Rotas protegidas por autenticação
     Route::middleware('auth:api')->group(function () {
+        // Home
+        Route::prefix('home')->group(function () {
+            Route::get('/', [UserController::class, 'home']);
+        });
         // Usuário
         Route::prefix('usuario')->group(function () {
             Route::get('/', [UserController::class, 'edit']);

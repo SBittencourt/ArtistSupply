@@ -4,7 +4,6 @@ import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import axios from 'axios';
 import { useRouter } from 'expo-router';
 
-// Definindo a interface para os dados do formulário
 interface FormData {
   name: string;
   email: string;
@@ -13,10 +12,9 @@ interface FormData {
 }
 
 export default function RegisterScreen() {
-  const { control, handleSubmit, reset } = useForm<FormData>(); // Tipando com FormData
-  const router = useRouter(); // Hook do expo-router
+  const { control, handleSubmit, reset } = useForm<FormData>(); 
+  const router = useRouter(); 
 
-  // Tipando o parâmetro 'data' de acordo com o tipo FormData
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
       const response = await axios.post('http://localhost:8000/api/api/auth/register', data);

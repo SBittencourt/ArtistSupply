@@ -15,7 +15,7 @@ export default function LoginScreen() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const router = useRouter(); // Hook para navegação
+  const router = useRouter(); 
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -82,13 +82,13 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#121120', // Cor de fundo ajustada para a mesma da tela de registro
-      alignItems: 'center', // Adicionando alinhamento centralizado no eixo horizontal
-      justifyContent: 'center', // Centralizando o conteúdo verticalmente
+      backgroundColor: '#121120', 
+      alignItems: 'center', 
+      justifyContent: 'center', 
       padding: 20,
     },
     title: {
-      fontSize: 28, // Tamanho de fonte igual ao da tela de registro
+      fontSize: 28,
       fontWeight: 'bold',
       color: '#fff',
       marginBottom: 20,
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     formContainer: {
       width: '100%',
       padding: 20,
-      backgroundColor: 'rgba(28, 7, 54, 0.9)', // Mantendo o fundo escuro, mas com opacidade
+      backgroundColor: 'rgba(28, 7, 54, 0.9)',
       borderRadius: 10,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 4 },
@@ -109,22 +109,22 @@ const styles = StyleSheet.create({
       marginBottom: 5,
     },
     input: {
-      backgroundColor: '#1c0736', // Cor do campo de input ajustada
+      backgroundColor: '#1c0736',
       color: '#fff',
       padding: 10,
       borderRadius: 5,
       marginBottom: 15,
-      borderWidth: 1, // Adicionando borda para combinar com o estilo da tela de registro
-      borderColor: '#6c26bb', // Cor da borda igual à da tela de registro
+      borderWidth: 1, 
+      borderColor: '#6c26bb', 
     },
     button: {
-      backgroundColor: '#6c26bb', // Cor do botão ajustada
+      backgroundColor: '#6c26bb', 
       padding: 15,
       borderRadius: 5,
       alignItems: 'center',
     },
     buttonDisabled: {
-      backgroundColor: '#453073', // Cor quando o botão estiver desabilitado
+      backgroundColor: '#453073', 
     },
     buttonText: {
       color: '#fff',
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
     },
     linkText: {
-      color: '#9d48ec', // Cor do link ajustada para ficar consistente com o estilo da tela de registro
+      color: '#9d48ec', 
       textAlign: 'center',
       marginTop: 15,
     },
