@@ -2,10 +2,12 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import HamburgerMenu from '../components/HamburgerMenu'; 
 
 const Home: React.FC = () => {
   return (
     <View style={styles.container}>
+       < HamburgerMenu />
       <Text style={styles.welcomeText}>Bem-vindo ao Artist Supply!</Text>
 
       <View style={styles.linksContainer}>
