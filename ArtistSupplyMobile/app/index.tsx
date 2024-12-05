@@ -80,58 +80,61 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0a073b',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginBottom: 20,
-  },
-  formContainer: {
-    width: '100%',
-    padding: 20,
-    backgroundColor: 'rgba(28, 7, 54, 0.9)',
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
-  },
-  label: {
-    fontSize: 16,
-    color: '#fff',
-    marginBottom: 5,
-  },
-  input: {
-    backgroundColor: '#1d1a40',
-    color: '#fff',
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 15,
-  },
-  button: {
-    backgroundColor: '#6c26bb',
-    padding: 15,
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-  buttonDisabled: {
-    backgroundColor: '#453073',
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  linkText: {
-    color: '#9d48ec',
-    textAlign: 'center',
-    marginTop: 15,
-  },
-});
+    container: {
+      flex: 1,
+      backgroundColor: '#121120', // Cor de fundo ajustada para a mesma da tela de registro
+      alignItems: 'center', // Adicionando alinhamento centralizado no eixo horizontal
+      justifyContent: 'center', // Centralizando o conteúdo verticalmente
+      padding: 20,
+    },
+    title: {
+      fontSize: 28, // Tamanho de fonte igual ao da tela de registro
+      fontWeight: 'bold',
+      color: '#fff',
+      marginBottom: 20,
+    },
+    formContainer: {
+      width: '100%',
+      padding: 20,
+      backgroundColor: 'rgba(28, 7, 54, 0.9)', // Mantendo o fundo escuro, mas com opacidade
+      borderRadius: 10,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.3,
+      shadowRadius: 10,
+    },
+    label: {
+      fontSize: 16,
+      color: '#fff',
+      marginBottom: 5,
+    },
+    input: {
+      backgroundColor: '#1c0736', // Cor do campo de input ajustada
+      color: '#fff',
+      padding: 10,
+      borderRadius: 5,
+      marginBottom: 15,
+      borderWidth: 1, // Adicionando borda para combinar com o estilo da tela de registro
+      borderColor: '#6c26bb', // Cor da borda igual à da tela de registro
+    },
+    button: {
+      backgroundColor: '#6c26bb', // Cor do botão ajustada
+      padding: 15,
+      borderRadius: 5,
+      alignItems: 'center',
+    },
+    buttonDisabled: {
+      backgroundColor: '#453073', // Cor quando o botão estiver desabilitado
+    },
+    buttonText: {
+      color: '#fff',
+      fontSize: 16,
+      fontWeight: 'bold',
+    },
+    linkText: {
+      color: '#9d48ec', // Cor do link ajustada para ficar consistente com o estilo da tela de registro
+      textAlign: 'center',
+      marginTop: 15,
+    },
+  });
+  
