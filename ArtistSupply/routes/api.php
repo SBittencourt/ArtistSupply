@@ -27,7 +27,7 @@ Route::prefix('api')->group(function () {
     });
 
     // Rotas protegidas por autenticação
-    Route::middleware('auth:api')->group(function () {
+
         // Home
         Route::prefix('home')->group(function () {
             Route::get('/', [UserController::class, 'home']);
@@ -78,4 +78,3 @@ Route::prefix('api')->group(function () {
             Route::delete('/{id}/delete', [ActiveEventController::class, 'destroy']);
         });
     });
-});

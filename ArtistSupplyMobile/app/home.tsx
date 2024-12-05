@@ -23,7 +23,7 @@ const Home: React.FC = () => {
         </View>
 
         <View style={styles.linkRow}>
-          <Link href="/" style={styles.linkButton}>
+          <Link href="/productList" style={styles.linkButton}>
             <Ionicons name="cube-outline" size={24} color="#fff" style={styles.icon} />
             <Text style={styles.linkText}>Estoque</Text>
           </Link>

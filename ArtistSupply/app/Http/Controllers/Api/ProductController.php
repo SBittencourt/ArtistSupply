@@ -14,7 +14,7 @@ class ProductController extends Controller
     {
         $search = $request->input('search');
         $categoryId = $request->input('category'); 
-    
+        
         $products = Product::query()
             ->when($search, function ($query) use ($search) {
                 return $query->where('nome', 'like', '%' . $search . '%')
@@ -23,16 +23,16 @@ class ProductController extends Controller
             ->when($categoryId, function ($query) use ($categoryId) {
                 return $query->where('category_id', $categoryId);
             })
-            ->where('user_id', Auth::id())
             ->get();
-    
+        
         $categories = Category::where('user_id', Auth::id())->get();
-    
+
         return response()->json([
             'products' => $products,
             'categories' => $categories,
         ], 200);
     }
+    
     
     public function create()
     {

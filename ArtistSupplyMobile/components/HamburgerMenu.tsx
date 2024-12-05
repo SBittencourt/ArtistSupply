@@ -72,9 +72,14 @@ const HamburgerMenu: React.FC = () => {
               <Ionicons name="close" size={28} color="#fff" />
             </TouchableOpacity>
 
-            <Link href="/" style={styles.menuOption} onPress={toggleMenu}>
+            <Link href="/home" style={styles.menuOption} onPress={toggleMenu}>
               <Ionicons name="home-outline" size={24} color="#fff" />
               <Text style={styles.menuText}>Home</Text>
+            </Link>
+
+            <Link href="/productList" style={styles.menuOption} onPress={toggleMenu}>
+              <Ionicons name="home-outline" size={24} color="#fff" />
+              <Text style={styles.menuText}>Produtos</Text>
             </Link>
 
             <Link href="/" style={styles.menuOption} onPress={toggleMenu}>
@@ -101,7 +106,7 @@ const HamburgerMenu: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    zIndex: 10,
+    zIndex: 1000,
   },
   hamburgerButton: {
     bottom: 390,
@@ -110,6 +115,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 20,
     elevation: 5,
+    zIndex: 1000,
   },
   overlay: {
     position: 'absolute',
