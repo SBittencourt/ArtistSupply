@@ -1,19 +1,13 @@
 import React, { useState, useRef } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Animated,
-  Dimensions,
-} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { Link } from 'expo-router';
 
 const HamburgerMenu: React.FC = () => {
   const [menuVisible, setMenuVisible] = useState(false);
   const slideAnim = useRef(new Animated.Value(Dimensions.get('window').height)).current;
   const opacityAnim = useRef(new Animated.Value(0)).current;
-  const backgroundOpacityAnim = useRef(new Animated.Value(0)).current;  // Nova animação para o fundo
+  const backgroundOpacityAnim = useRef(new Animated.Value(0)).current;
 
   const toggleMenu = () => {
     if (menuVisible) {
@@ -29,7 +23,7 @@ const HamburgerMenu: React.FC = () => {
           useNativeDriver: false,
         }),
         Animated.timing(backgroundOpacityAnim, {
-          toValue: 0,  // Desaparecer o fundo escuro
+          toValue: 0,
           duration: 300,
           useNativeDriver: false,
         }),
@@ -48,7 +42,7 @@ const HamburgerMenu: React.FC = () => {
           useNativeDriver: false,
         }),
         Animated.timing(backgroundOpacityAnim, {
-          toValue: 0.6,  // Ativar a camada escura
+          toValue: 0.6,
           duration: 300,
           useNativeDriver: false,
         }),
@@ -78,18 +72,25 @@ const HamburgerMenu: React.FC = () => {
               <Ionicons name="close" size={28} color="#fff" />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.menuOption}>
+            <Link href="/" style={styles.menuOption} onPress={toggleMenu}>
               <Ionicons name="home-outline" size={24} color="#fff" />
               <Text style={styles.menuText}>Home</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.menuOption}>
+            </Link>
+
+            <Link href="/" style={styles.menuOption} onPress={toggleMenu}>
               <Ionicons name="calendar-outline" size={24} color="#fff" />
               <Text style={styles.menuText}>Eventos</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.menuOption}>
+            </Link>
+
+            <Link href="/" style={styles.menuOption} onPress={toggleMenu}>
               <Ionicons name="settings-outline" size={24} color="#fff" />
               <Text style={styles.menuText}>Configurações</Text>
-            </TouchableOpacity>
+            </Link>
+
+            <Link href="/" style={styles.menuOption} onPress={toggleMenu}>
+              <Ionicons name="log-out-outline" size={24} color="#fff" />
+              <Text style={styles.menuText}>Logout</Text>
+            </Link>
           </View>
         </Animated.View>
       )}
@@ -100,20 +101,14 @@ const HamburgerMenu: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    flex: 1,
-    backgroundColor: '#121120',
-    alignItems: 'center',
-    justifyContent: 'center',
     zIndex: 10,
   },
   hamburgerButton: {
-    position: 'absolute',
-    top: -400,
-    right: -170,
-    zIndex: 10,
+    bottom: 390,
+    left: 150,
     backgroundColor: '#1c0736',
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 20,
     elevation: 5,
   },
   overlay: {
@@ -130,7 +125,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1c0736',
     justifyContent: 'center',
     alignItems: 'center',
-    zIndex: 5, 
+    zIndex: 5,
   },
   menuContent: {
     backgroundColor: '#1c0736',
@@ -139,13 +134,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   closeButton: {
-    // position: 'absolute',
-    // top: -290,
-    // right: -60,
-    // zIndex: 19,
-    // backgroundColor: '#6c26bb',
-    // padding: 10,
-    // borderRadius: 5,
+   
   },
   menuOption: {
     flexDirection: 'row',
