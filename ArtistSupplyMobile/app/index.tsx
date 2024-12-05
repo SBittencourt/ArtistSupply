@@ -32,8 +32,7 @@ export default function LoginScreen() {
       console.log('Login bem-sucedido:', response.data);
       Alert.alert('Sucesso', 'Login realizado com sucesso!');
       
-      // Navegação para a tela de registro
-      router.push('/register');
+      router.push('/home');
     } catch (error) {
       console.error('Erro no login:', error);
       Alert.alert('Erro', 'Credenciais inválidas. Tente novamente.');
@@ -71,9 +70,10 @@ export default function LoginScreen() {
         >
           <Text style={styles.buttonText}>{loading ? 'Carregando...' : 'Entrar'}</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.linkText}>Não possui uma conta? Criar uma conta</Text>
+        <TouchableOpacity onPress={() => router.push('/register')}>
+            <Text style={styles.linkText}>Não possui uma conta? Criar uma conta</Text>
         </TouchableOpacity>
+
       </View>
     </View>
   );
