@@ -8,11 +8,14 @@ import {
   Alert,
 } from 'react-native';
 import axios from 'axios';
+import { useRouter } from 'expo-router';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const router = useRouter(); // Hook para navegação
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -26,11 +29,14 @@ export default function LoginScreen() {
         email,
         password,
       });
-      console.log('Login bem-sucedido:', response.data); // Log do sucesso
-        Alert.alert('Sucesso', 'Login realizado com sucesso!');
-      } catch (error) {
-        console.error('Erro no login:', error); // Log do erro
-        Alert.alert('Erro', 'Credenciais inválidas. Tente novamente.');
+      console.log('Login bem-sucedido:', response.data);
+      Alert.alert('Sucesso', 'Login realizado com sucesso!');
+      
+      // Navegação para a tela de registro
+      router.push('/register');
+    } catch (error) {
+      console.error('Erro no login:', error);
+      Alert.alert('Erro', 'Credenciais inválidas. Tente novamente.');
     } finally {
       setLoading(false);
     }
