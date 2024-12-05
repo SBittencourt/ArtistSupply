@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1c0736',
     padding: 100,
     alignItems: 'center',
+    borderRadius: 20,
   },
   closeButton: {
     // position: 'absolute',
