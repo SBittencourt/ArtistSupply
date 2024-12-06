@@ -36,11 +36,13 @@ class ProductController extends Controller
     
     public function create()
     {
-        $categories = Category::where('user_id', Auth::id())->get();
+        $categories = Category::all();
+    
         return response()->json([
             'categories' => $categories,
         ], 200);
     }
+    
 
     public function edit($id)
     {
@@ -77,7 +79,7 @@ class ProductController extends Controller
             'descricao' => $request->descricao,
             'extra' => $request->extra,
             'category_id' => $request->category_id,
-            'user_id' => Auth::id(),
+            'user_id' => 1,
         ]);
     
         return response()->json(['message' => 'Produto criado com sucesso!', 'product' => $product], 201);

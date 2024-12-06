@@ -78,7 +78,7 @@ const ProductList: React.FC = () => {
       <ScrollView style={styles.scrollView}>
         <View style={styles.header}>
           <Text style={styles.title}>Lista de Produtos</Text>
-          <Link href="/" style={styles.createButton}>
+          <Link href="/productCreate" style={styles.createButton}>
             <Button title="Criar Novo Produto" color="#6c26bb" />
           </Link>
         </View>
