@@ -53,6 +53,7 @@ Route::prefix('api')->group(function () {
         Route::prefix('categorias')->group(function () {
             Route::get('/', [CategoryController::class, 'index']);
             Route::post('/store', [CategoryController::class, 'store']);
+            Route::get('/show/{id}', [CategoryController::class, 'show']);
             Route::put('/{id}', [CategoryController::class, 'update']);
             Route::delete('/{id}', [CategoryController::class, 'destroy']);
         });
