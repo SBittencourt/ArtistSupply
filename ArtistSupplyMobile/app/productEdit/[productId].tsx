@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { useRouter, useLocalSearchParams } from 'expo-router'; // Importando useRouter e useLocalSearchParams
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert} from 'react-native'; // Adicionando Picker para seleção de categoria
+import { Picker } from '@react-native-picker/picker';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import axios from 'axios';
 
 interface Product {
@@ -14,20 +15,28 @@ interface Product {
   category_id: number;
 }
 
+interface Category {
+  id: number;
+  name: string;
+}
+
 export default function EditProductScreen() {
   const router = useRouter();
-  const { id } = useLocalSearchParams(); 
+  const { productId } = useLocalSearchParams(); // Pega o ID da URL
+  console.log({productId});
 
   const [product, setProduct] = useState<Product | null>(null);
+  const [categories, setCategories] = useState<Category[]>([]); // Adicionando categorias
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (id) {
+    if (productId) {
       const fetchProduct = async () => {
         setLoading(true);
         try {
-          const response = await axios.get<Product>(`http://localhost:8000/api/api/estoque/${id}`);
-          setProduct(response.data);
+          const response = await axios.get(`http://localhost:8000/api/api/estoque/${productId}`);
+          setProduct(response.data.product); // Produto retornado
+          setCategories(response.data.categories); // Categorias retornadas
         } catch (error) {
           Alert.alert('Erro ao carregar os dados do produto');
         } finally {
@@ -37,19 +46,14 @@ export default function EditProductScreen() {
 
       fetchProduct();
     }
-  }, [id]);
+  }, [productId]);
 
   const handleEdit = async () => {
-    if (product && id) {
+    if (product && productId) {
       try {
-        const updatedProduct = {
-          ...product,
-          id: Number(id), 
-        };
-
-        await axios.put(`http://localhost:8000/api/api/estoque/update/${id}`, updatedProduct);
+        await axios.put(`http://localhost:8000/api/api/estoque/update/${productId}`, product);
         Alert.alert('Sucesso', 'Produto atualizado com sucesso!', [
-          { text: 'OK', onPress: () => router.push('/productList') }, 
+          { text: 'OK', onPress: () => router.push('/productList') },
         ]);
       } catch (error) {
         Alert.alert('Erro ao atualizar o produto');
@@ -99,6 +103,15 @@ export default function EditProductScreen() {
         onChangeText={(text) => setProduct({ ...product!, extra: text })}
         placeholder="Informações Extras"
       />
+      <Picker
+        selectedValue={product?.category_id}
+        onValueChange={(itemValue: any) => setProduct({ ...product!, category_id: Number(itemValue) })}
+        style={styles.input}
+      >
+        {categories.map((category) => (
+          <Picker.Item key={category.id} label={category.name} value={category.id} />
+        ))}
+      </Picker>
       <TouchableOpacity style={styles.button} onPress={handleEdit}>
         <Text style={styles.buttonText}>Salvar Alterações</Text>
       </TouchableOpacity>

@@ -85,10 +85,6 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
     
-        if ($product->user_id !== Auth::id()) {
-            return response()->json(['error' => 'Você não tem permissão para atualizar este produto.'], 403);
-        }
-    
         $request->validate([
             'nome' => 'required|string|max:255',
             'quantia' => 'required|integer',
