@@ -9,7 +9,7 @@
         <!-- Gráfico de Barras: Quantidade Vendida -->
         <div class="col-md-6 mb-4">
             <div class="card shadow-sm">
-                <div class="card-header text-center bg-primary text-white">
+                <div class="card-header text-center bg-dark text-white">
                     <h5>Quantidade Vendida por Produto</h5>
                 </div>
                 <div class="card-body">
@@ -21,7 +21,7 @@
         <!-- Gráfico de Barras: Valor Vendido -->
         <div class="col-md-6 mb-4">
             <div class="card shadow-sm">
-                <div class="card-header text-center bg-success text-white">
+                <div class="card-header text-center bg-dark text-white">
                     <h5>Valor Vendido por Produto</h5>
                 </div>
                 <div class="card-body">
@@ -33,9 +33,9 @@
 
     <!-- Gráfico de Pizza: Categoria de Produto -->
     <div class="row">
-        <div class="col-md-6 mb-4">
+        <div class="col-md-5 mb-4">
             <div class="card shadow-sm">
-                <div class="card-header text-center bg-warning text-white">
+                <div class="card-header text-center bg-dark text-white">
                     <h5>Valor Vendido por Categoria</h5>
                 </div>
                 <div class="card-body">
@@ -45,9 +45,9 @@
         </div>
 
         <!-- Gráfico de Linha: Vendas Mensais -->
-        <div class="col-md-6 mb-4">
+        <div class="col-md-7 mb-4">
             <div class="card shadow-sm">
-                <div class="card-header text-center bg-info text-white">
+                <div class="card-header text-center bg-dark text-white">
                     <h5>Valor Vendido por Mês</h5>
                 </div>
                 <div class="card-body">
@@ -140,21 +140,29 @@
             }
         });
 
-        // Gráfico de Pizza: Categoria
+        // Gráfico de Pizza: Categoria (Com cores de maior contraste)
         new Chart(document.getElementById('categoryChart').getContext('2d'), {
             type: 'pie',
             data: {
                 labels: Object.keys(chartData.categories),
                 datasets: [{
                     data: Object.values(chartData.categories),
-                    backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#4bc0c0', '#9966ff', '#ff9f40']
+                    backgroundColor: [
+                        '#FF5733',  // Laranja vibrante
+                        '#C70039',  // Vermelho escuro
+                        '#900C3F',  // Vinho
+                        '#581845',  // Roxo escuro
+                        '#1C1C1C',  // Preto
+                        '#8E44AD'   // Roxo médio
+                    ]
                 }]
             },
             options: {
                 responsive: true,
                 plugins: {
                     legend: { position: 'bottom' }
-                }
+                },
+                aspectRatio: 1.5 // Reduzindo o gráfico de pizza para ajustá-lo ao tamanho do gráfico de linha
             }
         });
 
