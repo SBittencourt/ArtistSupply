@@ -115,6 +115,10 @@ export default function EditProductScreen() {
       <TouchableOpacity style={styles.button} onPress={handleEdit}>
         <Text style={styles.buttonText}>Salvar Alterações</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => router.push('/productList')}>
+        <Text style={styles.link}>Voltar para a lista de produtos</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -151,5 +155,10 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
+  },
+  link: {
+    color: '#9d48ec',
+    textAlign: 'center',
+    marginTop: 15,
   },
 });
