@@ -134,10 +134,6 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        if ($product->user_id !== Auth::id()) {
-            return response()->json(['error' => 'Você não tem permissão para excluir este produto.'], 403);
-        }
-
         $product->delete();
         return response()->json(['message' => 'Produto excluído com sucesso!'], 200);
     }
