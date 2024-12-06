@@ -47,11 +47,11 @@ class EventController extends Controller
 
     public function show($id)
     {
-        $event = Event::where('id', $id)->findOrFail();
-        
-        return response()->json($event);
+        $event = Event::findOrFail($id);  
+    
+        return response()->json($event, 200);  
     }
-
+    
     public function update(Request $request, $id)
     {
         $request->validate([
