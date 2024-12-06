@@ -1,6 +1,6 @@
 <span id="topo">
 <h1 align='center'>
- ✨ Sprint 2 ✨
+ ✨ Sprint 5 ✨
     
 </h1>
 
@@ -24,11 +24,9 @@
 Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando em "Ver entrega". 
 | Tarefa |            Status           |
 |:------:|:---------------------------:|
-| CRUD - usuário | Finalizada |
-| Rotas protegidas + login | Finalizada |
-| CRUD - produtos | Finalizada |
-| CRUD - eventos | Finalizada |
-| CRUD - categorias | Finalizada |
+| Acesso aos CRUD's mobile | Finalizada |
+| Relatórios | Finalizada |
+| CRUD pedidos | Finalizada |
 
 → [Voltar ao topo](#topo)
 
