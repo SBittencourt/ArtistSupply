@@ -162,7 +162,7 @@ class ActiveEventController extends Controller
     public function generalReport()
     {
         $userId = auth()->id();
-    
+        
         // Obtendo os produtos vendidos e agrupando por categoria e produto
         $soldProducts = \DB::table('active_event_product')
             ->join('products', 'active_event_product.product_id', '=', 'products.id')
@@ -182,15 +182,31 @@ class ActiveEventController extends Controller
             return $group->sum('total_value');
         });
     
+        // Agrupando as vendas por mês (valor total vendido por mês)
+        $salesOverTime = \DB::table('active_event_product')
+            ->join('active_events', 'active_event_product.active_event_id', '=', 'active_events.id')
+            ->join('products', 'active_event_product.product_id', '=', 'products.id')
+            ->where('products.user_id', $userId)
+            ->select(
+                \DB::raw('DATE_FORMAT(active_events.start_time, "%Y-%m") as month_year'),  // Formatação para ano-mês
+                \DB::raw('COALESCE(SUM(active_event_product.total_value), 0) as total_value')
+            )
+            ->groupBy(\DB::raw('DATE_FORMAT(active_events.start_time, "%Y-%m")'))  // Agrupando por ano-mês
+            ->orderBy(\DB::raw('DATE_FORMAT(active_events.start_time, "%Y-%m")'), 'ASC')  // Ordenando por mês e ano
+            ->get();
+    
+        // Preparando dados para o gráfico de vendas por mês
+        $monthsData = $salesOverTime->pluck('total_value', 'month_year');
+    
         // Preparando dados para os gráficos
         $chartData = [
             'quantities' => $soldProducts->pluck('total_quantity', 'product_name'),
             'values' => $soldProducts->pluck('total_value', 'product_name'),
             'categories' => $categoriesData,
+            'months' => $monthsData,  // Dados para o gráfico mensal
         ];
     
-        return view('reports.general', compact('chartData', 'soldProducts'));
+        return view('reports.general', compact('chartData', 'soldProducts', 'monthsData'));
     }
     
-
 }
