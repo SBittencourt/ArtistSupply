@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ActiveEventController;
 
 
@@ -91,6 +92,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{id}', [ActiveEventController::class, 'show'])->name('activeEvents.show');
         Route::get('/{activeEventId}/summary', [ActiveEventController::class, 'summary'])->name('activeEvents.summary');
         Route::delete('/{id}/delete', [ActiveEventController::class, 'destroy'])->name('activeEvents.destroy');
+    });
+
+    Route::prefix('orders')->name('orders.')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('index');
+        Route::get('/create', [OrderController::class, 'create'])->name('create');
+        Route::post('/', [OrderController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [OrderController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [OrderController::class, 'update'])->name('update');
+        Route::delete('/{id}', [OrderController::class, 'destroy'])->name('destroy');
     });
     
     Route::get('reports/general', [ActiveEventController::class, 'generalReport'])->name('reports.general');

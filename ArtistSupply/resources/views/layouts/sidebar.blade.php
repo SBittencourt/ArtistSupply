@@ -49,6 +49,13 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="/orders" class="nav-link">
+                        <i class="icon-building nav-icon"></i>
+                        <p>Pedidos</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="/reports/general" class="nav-link">
                         <i class="icon-building nav-icon"></i>
                         <p>Relatórios</p>
