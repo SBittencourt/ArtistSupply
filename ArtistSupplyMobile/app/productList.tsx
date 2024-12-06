@@ -10,7 +10,7 @@ import {
   ScrollView,
 } from 'react-native';
 import axios from 'axios';
-import { Link } from 'expo-router'; // Usando o Link do expo-router
+import { Link } from 'expo-router';
 import { Icon } from 'react-native-elements';
 
 interface Category {
@@ -94,7 +94,6 @@ const ProductList: React.FC = () => {
           <Button title="Pesquisar" onPress={handleSearch} color="#1c0736" />
         </View>
 
-        {/* Lista de produtos */}
         <FlatList
           data={products}
           keyExtractor={(item) => item.id.toString()}
@@ -105,8 +104,14 @@ const ProductList: React.FC = () => {
               <Text style={styles.product}>{item.preco}</Text>
               <Text style={styles.product}>{item.local}</Text>
               <View style={styles.actions}>
-                <Link href={`/`} style={styles.editButton}>
-                  <Icon name="edit" type="font-awesome" color="#fff" />
+              <Link
+                href={{
+                pathname: '/productEdit/[productId]',
+                params: { productId: item.id },
+                }}
+                style={styles.editButton}
+                >
+                <Icon name="edit" type="font-awesome" color="#fff" />
                 </Link>
                 <TouchableOpacity
                   onPress={() => handleDelete(item.id)}

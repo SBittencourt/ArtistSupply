@@ -47,12 +47,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        
-        if ($product->user_id !== Auth::id()) {
-            return response()->json(['error' => 'Você não tem permissão para editar este produto.'], 403);
-        }
 
-        $categories = Category::where('user_id', Auth::id())->get();
+        $categories = Category::all();
         return response()->json([
             'product' => $product,
             'categories' => $categories,
