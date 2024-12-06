@@ -42,12 +42,12 @@ class EventController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        return response()->json($event, 201); // 201 Created
+        return response()->json($event, 201); 
     }
 
     public function show($id)
     {
-        $event = Event::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        $event = Event::where('id', $id)->findOrFail();
         return response()->json($event);
     }
 
@@ -61,7 +61,7 @@ class EventController extends Controller
             'descricao' => 'nullable|string',
         ]);
 
-        $event = Event::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        $event = Event::where('id', $id)->first();
         $event->update([
             'nome' => $request->nome,
             'data_inicio' => $request->data_inicio,
@@ -76,8 +76,10 @@ class EventController extends Controller
 
     public function destroy($id)
     {
-        $event = Event::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        $event = Event::findOrFail($id);
+
         $event->delete();
+
         return response()->json(['message' => 'Evento excluído com sucesso!']);
     }
 }

@@ -61,8 +61,8 @@ Route::prefix('api')->group(function () {
         Route::prefix('eventos')->group(function () {
             Route::get('/', [EventController::class, 'index']);
             Route::post('/store', [EventController::class, 'store']);
-            Route::put('/{event}', [EventController::class, 'update']);
-            Route::delete('/{event}', [EventController::class, 'destroy']);
+            Route::put('/{id}', [EventController::class, 'update']);
+            Route::delete('/{id}', [EventController::class, 'destroy']);
         });
 
         // Relatórios

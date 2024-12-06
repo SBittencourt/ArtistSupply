@@ -45,7 +45,7 @@ const EventList: React.FC = () => {
 
   const handleDelete = async (id: number) => {
     try {
-      await axios.delete(`http://localhost:8000/api/api/eventos/destroy/${id}`);
+      await axios.delete(`http://localhost:8000/api/api/eventos/${id}`);
       fetchEvents();
     } catch (error) {
       console.error('Erro ao excluir evento:', error);
@@ -105,27 +105,10 @@ const EventList: React.FC = () => {
                 >
                   <Icon name="edit" type="font-awesome" color="#fff" />
                 </Link>
-                {item.activeEvent ? (
-                  <TouchableOpacity
-                    style={styles.viewButton}
-                    onPress={() =>
-                      console.log('Visualizar evento ativo ou resumo:', item.activeEvent)
-                    }
-                  >
-                    <Icon name="eye" type="font-awesome" color="#fff" />
-                  </TouchableOpacity>
-                ) : (
-                  <TouchableOpacity
-                    style={styles.startButton}
-                    onPress={() => console.log('Iniciar evento:', item.id)}
-                  >
-                    <Icon name="play" type="font-awesome" color="#fff" />
-                  </TouchableOpacity>
-                )}
                 <TouchableOpacity
-                  onPress={() => handleDelete(item.id)}
-                  style={styles.deleteButton}
-                >
+                    onPress={() => handleDelete(item.id)}
+                    style={styles.deleteButton}
+                    >
                   <Icon name="trash" type="font-awesome" color="#fff" />
                 </TouchableOpacity>
               </View>
