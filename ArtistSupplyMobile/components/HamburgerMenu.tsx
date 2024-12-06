@@ -78,18 +78,18 @@ const HamburgerMenu: React.FC = () => {
             </Link>
 
             <Link href="/productList" style={styles.menuOption} onPress={toggleMenu}>
-              <Ionicons name="home-outline" size={24} color="#fff" />
+              <Ionicons name="cube-outline" size={24} color="#fff" />
               <Text style={styles.menuText}>Produtos</Text>
             </Link>
 
-            <Link href="/" style={styles.menuOption} onPress={toggleMenu}>
+            <Link href="/eventList" style={styles.menuOption} onPress={toggleMenu}>
               <Ionicons name="calendar-outline" size={24} color="#fff" />
               <Text style={styles.menuText}>Eventos</Text>
             </Link>
 
-            <Link href="/" style={styles.menuOption} onPress={toggleMenu}>
-              <Ionicons name="settings-outline" size={24} color="#fff" />
-              <Text style={styles.menuText}>Configurações</Text>
+            <Link href="/https://docs.google.com/spreadsheets/u/0/d/1m0L1dx60k05oz-6jqm8h9NDiqRTBc9gOe5X14t2aYw0/htmlview" style={styles.menuOption} onPress={toggleMenu}>
+              <Ionicons name="people-outline" size={24} color="#fff" />
+              <Text style={styles.menuText}>Fornecedores</Text>
             </Link>
 
             <Link href="/" style={styles.menuOption} onPress={toggleMenu}>

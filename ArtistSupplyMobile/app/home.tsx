@@ -12,7 +12,7 @@ const Home: React.FC = () => {
 
       <View style={styles.linksContainer}>
         <View style={styles.linkRow}>
-          <Link href="/" style={styles.linkButton}>
+          <Link href="/eventList" style={styles.linkButton}>
             <Ionicons name="calendar-outline" size={24} color="#fff" style={styles.icon} />
             <Text style={styles.linkText}>Eventos</Text>
           </Link>

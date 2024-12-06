@@ -12,16 +12,16 @@ class EventController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-
-        $events = Event::where('user_id', Auth::id())
+    
+        $events = Event::query()
             ->when($search, function ($query, $search) {
                 return $query->where('nome', 'like', '%' . $search . '%');
             })
             ->get();
-
+    
         return response()->json($events);
     }
-
+    
     public function store(Request $request)
     {
         $request->validate([
