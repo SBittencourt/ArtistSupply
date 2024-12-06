@@ -154,10 +154,43 @@ class ActiveEventController extends Controller
             return response()->json(['error' => 'Você não tem permissão para excluir este evento.'], 403);
         }
 
-        $activeEvent->delete(); // Exclui o evento ativo
+        $activeEvent->delete(); 
 
         return redirect()->route('activeEvents.index')->with('success', 'Evento ativo excluído com sucesso.');
     }
 
+    public function generalReport()
+    {
+        $userId = auth()->id();
+    
+        // Obtendo os produtos vendidos e agrupando por categoria e produto
+        $soldProducts = \DB::table('active_event_product')
+            ->join('products', 'active_event_product.product_id', '=', 'products.id')
+            ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
+            ->where('products.user_id', $userId)
+            ->select(
+                'products.nome as product_name',
+                'categories.nome as category_name',
+                \DB::raw('COALESCE(SUM(active_event_product.quantity_sold), 0) as total_quantity'),
+                \DB::raw('COALESCE(SUM(active_event_product.total_value), 0) as total_value')
+            )
+            ->groupBy('products.id', 'products.nome', 'categories.id', 'categories.nome')
+            ->get();
+    
+        // Agrupando dados por categoria para os gráficos
+        $categoriesData = $soldProducts->groupBy('category_name')->map(function ($group) {
+            return $group->sum('total_value');
+        });
+    
+        // Preparando dados para os gráficos
+        $chartData = [
+            'quantities' => $soldProducts->pluck('total_quantity', 'product_name'),
+            'values' => $soldProducts->pluck('total_value', 'product_name'),
+            'categories' => $categoriesData,
+        ];
+    
+        return view('reports.general', compact('chartData', 'soldProducts'));
+    }
+    
 
 }

@@ -93,4 +93,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/{id}/delete', [ActiveEventController::class, 'destroy'])->name('activeEvents.destroy');
     });
     
+    Route::get('reports/general', [ActiveEventController::class, 'generalReport'])->name('reports.general');
+
 });

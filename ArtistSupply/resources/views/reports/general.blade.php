@@ -1,0 +1,149 @@
+@extends('layouts.master')
+
+@section('content')
+<div class="container my-4">
+    <h1 class="mb-4 text-center">Relatório Geral de Eventos</h1>
+
+    <!-- Gráficos -->
+    <div class="row">
+        <!-- Gráfico de Barras: Quantidade Vendida -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header text-center bg-primary text-white">
+                    <h5>Quantidade Vendida por Produto</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="quantityChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráfico de Barras: Valor Vendido -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header text-center bg-success text-white">
+                    <h5>Valor Vendido por Produto</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="valueChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gráfico de Pizza: Categoria de Produto -->
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header text-center bg-warning text-white">
+                    <h5>Valor Vendido por Categoria</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="categoryChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabela de Produtos Vendidos -->
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header text-center bg-dark text-white">
+                    <h5>Detalhes dos Produtos Vendidos</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Produto</th>
+                                <th>Categoria</th>
+                                <th>Quantidade Vendida</th>
+                                <th>Valor Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($soldProducts as $product)
+                                <tr>
+                                    <td>{{ $product->product_name }}</td>
+                                    <td>{{ $product->category_name }}</td>
+                                    <td>{{ $product->total_quantity }}</td>
+                                    <td>R$ {{ number_format($product->total_value, 2, ',', '.') }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts para Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const chartData = @json($chartData);
+
+        // Gráfico de Quantidade Vendida
+        new Chart(document.getElementById('quantityChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(chartData.quantities),
+                datasets: [{
+                    label: 'Quantidade Vendida',
+                    data: Object.values(chartData.quantities),
+                    backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+
+        // Gráfico de Valor Vendido
+        new Chart(document.getElementById('valueChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(chartData.values),
+                datasets: [{
+                    label: 'Valor Vendido (R$)',
+                    data: Object.values(chartData.values),
+                    backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+
+        // Gráfico de Pizza: Categoria
+        new Chart(document.getElementById('categoryChart').getContext('2d'), {
+            type: 'pie',
+            data: {
+                labels: Object.keys(chartData.categories),
+                datasets: [{
+                    data: Object.values(chartData.categories),
+                    backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#4bc0c0', '#9966ff', '#ff9f40']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    });
+</script>
+@endsection

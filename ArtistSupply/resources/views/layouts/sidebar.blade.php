@@ -48,6 +48,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="/reports/general" class="nav-link">
+                        <i class="icon-building nav-icon"></i>
+                        <p>Relatórios</p>
+                    </a>
+                </li>
+
                 <li class="nav-item user-panel">
                     <a href="estoque" class="nav-link">
                         <p>Estoque</p>
