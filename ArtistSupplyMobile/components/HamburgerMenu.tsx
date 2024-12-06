@@ -1,7 +1,15 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Animated, Dimensions } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Animated,
+  Dimensions,
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
+import * as Linking from 'expo-linking';
 
 const HamburgerMenu: React.FC = () => {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -50,23 +58,24 @@ const HamburgerMenu: React.FC = () => {
     }
   };
 
+  const openExternalLink = () => {
+    Linking.openURL(
+      'https://docs.google.com/spreadsheets/u/0/d/1m0L1dx60k05oz-6jqm8h9NDiqRTBc9gOe5X14t2aYw0/htmlview'
+    ).catch((err) => console.error('Erro ao abrir o link:', err));
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={toggleMenu} style={styles.hamburgerButton}>
         <Ionicons name="menu" size={28} color="#fff" />
       </TouchableOpacity>
 
-      {/* Camada escura atrás do menu */}
       {menuVisible && (
-        <Animated.View
-          style={[styles.overlay, { opacity: backgroundOpacityAnim }]} // Aplica animação de opacidade
-        />
+        <Animated.View style={[styles.overlay, { opacity: backgroundOpacityAnim }]} />
       )}
 
       {menuVisible && (
-        <Animated.View
-          style={[styles.menuContainer, { top: slideAnim, opacity: opacityAnim }]}
-        >
+        <Animated.View style={[styles.menuContainer, { top: slideAnim, opacity: opacityAnim }]}>
           <View style={styles.menuContent}>
             <TouchableOpacity onPress={toggleMenu} style={styles.closeButton}>
               <Ionicons name="close" size={28} color="#fff" />
@@ -87,10 +96,10 @@ const HamburgerMenu: React.FC = () => {
               <Text style={styles.menuText}>Eventos</Text>
             </Link>
 
-            <Link href="/https://docs.google.com/spreadsheets/u/0/d/1m0L1dx60k05oz-6jqm8h9NDiqRTBc9gOe5X14t2aYw0/htmlview" style={styles.menuOption} onPress={toggleMenu}>
+            <TouchableOpacity style={styles.menuOption} onPress={openExternalLink}>
               <Ionicons name="people-outline" size={24} color="#fff" />
               <Text style={styles.menuText}>Fornecedores</Text>
-            </Link>
+            </TouchableOpacity>
 
             <Link href="/" style={styles.menuOption} onPress={toggleMenu}>
               <Ionicons name="log-out-outline" size={24} color="#fff" />
@@ -121,8 +130,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.6)', 
-    zIndex: 4, 
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    zIndex: 4,
   },
   menuContainer: {
     position: 'absolute',
@@ -139,9 +148,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 20,
   },
-  closeButton: {
-   
-  },
+  closeButton: {},
   menuOption: {
     flexDirection: 'row',
     alignItems: 'center',
