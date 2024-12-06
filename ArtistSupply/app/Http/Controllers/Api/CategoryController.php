@@ -30,6 +30,7 @@ class CategoryController extends Controller
             'nome' => $request->nome,
             'descricao' => $request->descricao,
             'extra' => $request->extra,
+            'user_id' => 1,
         ]);
 
         return response()->json($category, 201); 
