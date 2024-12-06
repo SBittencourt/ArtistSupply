@@ -39,7 +39,7 @@ class EventController extends Controller
             'local' => $request->local,
             'descricao' => $request->descricao,
             'extra' => $request->extra,
-            'user_id' => Auth::id(),
+            'user_id' => 1,
         ]);
 
         return response()->json($event, 201); 
@@ -48,6 +48,7 @@ class EventController extends Controller
     public function show($id)
     {
         $event = Event::where('id', $id)->findOrFail();
+        
         return response()->json($event);
     }
 

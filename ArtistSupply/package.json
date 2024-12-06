@@ -14,7 +14,9 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "@react-native-community/datetimepicker": "^8.2.0",
         "react-native-gesture-handler": "^2.21.2",
+        "react-native-modal-datetime-picker": "^18.0.0",
         "react-native-reanimated": "^3.16.3",
         "react-navigation": "^4.4.4",
         "react-navigation-stack": "^2.10.4"

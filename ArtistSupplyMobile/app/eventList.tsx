@@ -37,7 +37,7 @@ const EventList: React.FC = () => {
           params: { search },
         }
       );
-      setEvents(response.data); // Atualize diretamente com os dados da API
+      setEvents(response.data); 
     } catch (error) {
       console.error('Erro ao buscar eventos:', error);
     }

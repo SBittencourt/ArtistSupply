@@ -62,6 +62,7 @@ Route::prefix('api')->group(function () {
             Route::get('/', [EventController::class, 'index']);
             Route::post('/store', [EventController::class, 'store']);
             Route::put('/{id}', [EventController::class, 'update']);
+            Route::get('/show/{id}', [EventController::class, 'show']);
             Route::delete('/{id}', [EventController::class, 'destroy']);
         });
 
