@@ -96,6 +96,11 @@ const HamburgerMenu: React.FC = () => {
               <Text style={styles.menuText}>Eventos</Text>
             </Link>
 
+            <Link href="/categoryList" style={styles.menuOption} onPress={toggleMenu}>
+              <Ionicons name="list-outline" size={24} color="#fff" />
+              <Text style={styles.menuText}>Categorias</Text>
+            </Link>
+
             <TouchableOpacity style={styles.menuOption} onPress={openExternalLink}>
               <Ionicons name="people-outline" size={24} color="#fff" />
               <Text style={styles.menuText}>Fornecedores</Text>

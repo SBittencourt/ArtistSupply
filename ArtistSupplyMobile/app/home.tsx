@@ -16,7 +16,7 @@ const Home: React.FC = () => {
             <Ionicons name="calendar-outline" size={24} color="#fff" style={styles.icon} />
             <Text style={styles.linkText}>Eventos</Text>
           </Link>
-          <Link href="/" style={styles.linkButton}>
+          <Link href="/categoryList" style={styles.linkButton}>
             <Ionicons name="list-outline" size={24} color="#fff" style={styles.icon} />
             <Text style={styles.linkText}>Categorias</Text>
           </Link>
